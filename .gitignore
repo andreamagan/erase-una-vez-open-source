@@ -1,0 +1,23 @@
+.DS_Store
+*.tmp
+.~lock.*
+slide-*.jpg
+crop_check.png
+charla/plantilla-charla.pdf
+
+# Ficheros de trabajo de Affinity (bloqueos y temporales)
+*.af~lock~
+*.af~tmp~
+
+# Histórico de estilos descartados: 222 MB que no aportan nada a quien
+# quiera contribuir. Se conservan en local, fuera del repo.
+assets/historico/
+
+# Carpeta puente: aquí van ficheros a borrar a mano
+_to_delete/
+
+# Notas de trabajo internas: no se publican
+notas/
+
+# Historial de git anterior (42 commits), guardado por si acaso
+.git-anterior/
