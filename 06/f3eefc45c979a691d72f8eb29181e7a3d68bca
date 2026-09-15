@@ -1,0 +1,23 @@
+.gitignore
+  s_cb98a6b9e3372b::t_a42b4d3a32515a 1-23
+LICENSE
+  s_cb98a6b9e3372b::t_11ade500f7b5a5 1-32
+README.md
+  s_cb98a6b9e3372b::t_ad084b0fb70c53 1-124
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "06f3eefc45c979a691d72f8eb29181e7a3d68bca",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
