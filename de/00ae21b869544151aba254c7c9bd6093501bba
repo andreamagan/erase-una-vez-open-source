@@ -1,0 +1,31 @@
+book/README.md
+  s_cb98a6b9e3372b::t_0143cae1918f0e 1-24
+book/gl/agradecementos.md
+  s_cb98a6b9e3372b::t_15e994e92baf69 1-14
+book/gl/contraportada.md
+  s_cb98a6b9e3372b::t_5cb88473f39383 1-8
+book/gl/creditos.md
+  s_cb98a6b9e3372b::t_ba7e06929da7b8 1-16
+book/gl/dedicatoria.md
+  s_cb98a6b9e3372b::t_e136754c7d91f1 1-5
+book/gl/do-pobo-ao-proxecto.md
+  s_cb98a6b9e3372b::t_30bc8bc71f167c 1-22
+book/gl/texto.md
+  s_cb98a6b9e3372b::t_60df1e01bdcade 1-300
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "de00ae21b869544151aba254c7c9bd6093501bba",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
