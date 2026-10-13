@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="gl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Follea as 36 páxinas ilustradas de Érase unha vez un proxecto Open Source.">
+  <title>O conto ilustrado · Érase unha vez un proxecto Open Source</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/hand.css">
+  <link rel="stylesheet" href="/conto/reader.css">
+</head>
+<body>
+  <a class="skip" href="#reader">Ir ao conto</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="/" aria-label="Érase unha vez un proxecto Open Source, inicio"><span class="mark">Érase unha vez</span><span class="mark-tail">un proxecto Open Source</span></a>
+    <nav aria-label="Navegación"><a href="/">Volver á web</a><a class="nav-read" href="/conto/texto.md">Versión só texto</a></nav>
+  </header>
+  <main id="reader" class="reader-shell wrap">
+    <div class="reader-heading">
+      <div><p class="eyebrow">O conto · galego</p><h1>Érase unha vez un proxecto <em>Open Source</em></h1></div>
+      <p>Unha caixa de cartón, unha gata chamada Teky e un bosque enteiro. Follea as páxinas tal como aparecen no libro.</p>
+    </div>
+    <div class="reader-status"><span>Libro ilustrado · 36 páxinas</span><span>Toca unha páxina para ampliala</span></div>
+    <div class="reader-book" id="reader-book" role="group" aria-label="Páxinas do libro" aria-describedby="reader-access-note">
+      <figure class="reader-page is-blank" id="left-page" aria-hidden="true"><button class="page-zoom" type="button" hidden><img width="1276" height="1276" alt=""></button></figure>
+      <figure class="reader-page" id="right-page"><button class="page-zoom" type="button" aria-label="Ampliar a páxina 1" data-page="1"><img src="/conto/pages/page-01.webp" width="1276" height="1276" alt="Páxina 1 do conto" fetchpriority="high"></button></figure>
+    </div>
+    <div class="reader-controls"><button id="prev" type="button" aria-label="Páxinas anteriores">← <span>Anterior</span></button><span id="position" role="status" aria-live="polite"></span><button id="next" type="button" aria-label="Páxinas seguintes"><span>Seguinte</span> →</button></div>
+    <p class="reader-hint">Usa as frechas ou desliza para follear. Toca unha páxina para vela de preto.</p>
+    <p class="reader-access-note" id="reader-access-note">O texto tamén está dispoñible nunha versión só texto baixo o visor.</p>
+    <div class="reader-links"><a href="/conto/texto.md">Versión só texto ↗</a><a href="/">Volver á web ↗</a></div>
+  </main>
+  <dialog class="page-dialog" id="page-dialog" aria-label="Páxina ampliada"><button class="close-dialog" type="button" aria-label="Pechar a páxina ampliada">Pechar ×</button><div class="zoom-scroll"><img src="/conto/pages/page-01.webp" width="1276" height="1276" alt=""></div></dialog>
+  <footer class="site-footer"><div class="wrap footer-bottom"><span>Texto e ilustracións: Andrea Magán · 2026</span><span>Contido <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.gl">CC BY-NC 4.0</a></span></div></footer>
+  <script src="/conto/reader.js"></script>
+</body>
+</html>
