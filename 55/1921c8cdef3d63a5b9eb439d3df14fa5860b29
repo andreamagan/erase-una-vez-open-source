@@ -1,0 +1,21 @@
+talk/README.md
+  s_cb98a6b9e3372b::t_a93d7be6d07e47 1-35
+talk/wordcamp-galicia-2026/guion.md
+  s_cb98a6b9e3372b::t_2ff77a5fa51eec 1-145
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "551921c8cdef3d63a5b9eb439d3df14fa5860b29",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
