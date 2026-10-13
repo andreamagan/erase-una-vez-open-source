@@ -1,0 +1,33 @@
+.gitignore
+  s_cb98a6b9e3372b::t_b6d33b60ace6f4 24-42
+.pre-commit-config.yaml
+  s_cb98a6b9e3372b::t_1608645bb47e09 1-25
+LICENSE
+  s_cb98a6b9e3372b::t_dc081920744bc7 2,4-5,7,10-11,13,15-19,21,23-25,27,29-31
+LICENSE-CODE
+  s_cb98a6b9e3372b::t_980ce12c7e61c4 1-22
+LICENSES/CC-BY-NC-4.0.txt
+  s_cb98a6b9e3372b::t_316d572522d0ac 1-158
+LICENSES/CC0-1.0.txt
+  s_cb98a6b9e3372b::t_78cf5ffea73c29 1-121
+LICENSES/MIT.txt
+  s_cb98a6b9e3372b::t_6061bb2e4a4e9a 1-18
+REUSE.toml
+  s_cb98a6b9e3372b::t_bf29139a4acc0f 1-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cd646e498f5729722864003f9c6bfc2176c6677f",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
