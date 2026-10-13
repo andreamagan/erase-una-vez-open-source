@@ -1,0 +1,58 @@
+# SPDX-FileCopyrightText: 2026 Andrea Magán Rey
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# Licencias de cada fichero del repositorio (https://reuse.software/).
+# Así no hace falta un fichero .license al lado de cada imagen.
+version = 1
+
+# Contenido creativo: historia, guion, personajes, ilustraciones y textos
+[[annotations]]
+path = [
+  "book/**",
+  "illustrations/**",
+  "talk/**",
+  "site/assets/**",
+  "site/conto/pages/**",
+  "README.md",
+  "CONTRIBUTING.md",
+]
+SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
+SPDX-License-Identifier = "CC-BY-NC-4.0"
+
+# Código: web, configuración de Pages y scripts
+[[annotations]]
+path = [
+  "site/**/*.html",
+  "site/**/*.css",
+  "site/**/*.js",
+  ".github/**",
+  ".pre-commit-config.yaml",
+]
+SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
+SPDX-License-Identifier = "MIT"
+
+# Textos de licencia, configuración del repo y este fichero
+[[annotations]]
+path = [
+  "LICENSE",
+  "LICENSE-CODE",
+  "LICENSES/**",
+  ".gitignore",
+  "REUSE.toml",
+  "site/.nojekyll",
+  "CODE_OF_CONDUCT.md",
+  "SECURITY.md",
+]
+SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
+SPDX-License-Identifier = "CC0-1.0"
+
+# Revisión lingüística del texto master en gallego
+[[annotations]]
+path = [
+  "book/gl/texto.md",
+  "site/conto/texto.md",
+]
+SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
+SPDX-FileContributor = ["2026 Mónica Pérez Sueiro (proofreader)"]
+SPDX-License-Identifier = "CC-BY-NC-4.0"

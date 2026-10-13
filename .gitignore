@@ -21,3 +21,22 @@ notas/
 
 # Historial de git anterior (42 commits), guardado por si acaso
 .git-anterior/
+
+# Ficheros generados por Python (scripts de build)
+__pycache__/
+*.pyc
+
+# Carpeta de trabajo de Claude (no se publica)
+Claude\ outputs/
+
+# Binarios pesados: se comparten como assets de una GitHub Release, no en git
+book/**/*.pdf
+talk/**/*.pdf
+talk/**/erase-unha-vez.html
+
+# Copias de prueba y respaldos
+*PRUEBA*
+*_backup*
+
+# Trabajo local: borradores, ficheros de Affinity, zips de referencia (no se publica)
+_local/
