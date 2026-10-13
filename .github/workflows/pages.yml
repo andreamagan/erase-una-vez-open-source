@@ -26,6 +26,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Prepare the site for its URL
         run: python3 .github/scripts/prepare-pages.py site _site "$GITHUB_REPOSITORY"
       - name: Upload site artifact
