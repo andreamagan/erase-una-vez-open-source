@@ -1,0 +1,25 @@
+CODE_OF_CONDUCT.md
+  s_cb98a6b9e3372b::t_44581532e20bc4 1-32
+CONTRIBUTING.md
+  s_cb98a6b9e3372b::t_c02342b57f5b46 1-87
+README.md
+  s_cb98a6b9e3372b::t_e83c4f7d56bc24 3-48,51,53-54,56-59,61-66,68-69,71,73-75
+SECURITY.md
+  s_cb98a6b9e3372b::t_021572636ab5f3 1-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2f107a13851f716b34b4b13e5d2462b3c3146b57",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
