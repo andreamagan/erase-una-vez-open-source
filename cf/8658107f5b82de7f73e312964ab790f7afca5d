@@ -1,0 +1,29 @@
+.github/scripts/prepare-pages.py
+  s_cb98a6b9e3372b::t_5782f6b6334877 2-7,16-51,55-62
+.github/workflows/pages.yml
+  s_cb98a6b9e3372b::t_5793f2adbc7382 8
+site/charla/wordcamp-galicia-2026.html
+  s_cb98a6b9e3372b::t_2902b9d3256f1b 1
+site/conto/index.html
+  s_cb98a6b9e3372b::t_293849b7e1da7a 17,32,35
+site/conto/texto.template.html
+  s_cb98a6b9e3372b::t_ed315045830dbe 1-32
+site/index.html
+  s_cb98a6b9e3372b::t_3f00c24c4b3597 8,51,59,88,92,104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cf8658107f5b82de7f73e312964ab790f7afca5d",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
