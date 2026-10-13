@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Prepare this static site for GitHub Pages project URLs and custom domains."""
+"""Prepare this static site for GitHub Pages project URLs and custom domains.
+
+Besides copying site/, it builds the text-only version of the story
+(conto/texto.html) from book/gl/, so the book text has a single source.
+"""
+from html import escape
 from pathlib import Path
 import re
 import shutil
@@ -8,9 +13,53 @@ import sys
 source = Path(sys.argv[1]).resolve()
 destination = Path(sys.argv[2]).resolve()
 repo = sys.argv[3]
+book = Path(__file__).resolve().parents[2] / "book" / "gl"
+
+# Order of the text-only page: the same order as in the printed book.
+BOOK_PARTS = ["dedicatoria.md", "texto.md", "do-pobo-ao-proxecto.md",
+              "agradecementos.md", "contraportada.md"]
+
+
+def inline(text):
+    text = escape(text, quote=False)
+    return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+
+
+def markdown_to_html(markdown):
+    """Tiny converter for the subset used in book/: headings, paragraphs,
+    bold, tables. HTML comments (page markers) are dropped."""
+    markdown = re.sub(r"<!--.*?-->", "", markdown, flags=re.S)
+    html = []
+    for block in re.split(r"\n\s*\n", markdown.strip()):
+        lines = [line.strip() for line in block.splitlines() if line.strip()]
+        if not lines:
+            continue
+        if lines[0].startswith("#"):
+            level = len(lines[0]) - len(lines[0].lstrip("#"))
+            html.append(f"<h{level + 1}>{inline(lines[0].lstrip('# '))}</h{level + 1}>")
+        elif lines[0].startswith("|"):
+            rows = [[inline(c.strip()) for c in l.strip("|").split("|")]
+                    for l in lines if not re.fullmatch(r"\|[\s|:-]+\|", l)]
+            head = "".join(f"<th>{c}</th>" for c in rows[0])
+            body = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>"
+                           for r in rows[1:])
+            html.append(f"<table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>")
+        else:
+            html.append(f"<p>{inline(' '.join(lines))}</p>")
+    return "\n".join(html)
+
+
 if destination.exists():
     shutil.rmtree(destination)
 shutil.copytree(source, destination)
+
+parts = "\n".join(markdown_to_html((book / name).read_text(encoding="utf-8"))
+                  for name in BOOK_PARTS)
+template = (destination / "conto" / "texto.template.html").read_text(encoding="utf-8")
+(destination / "conto" / "texto.html").write_text(
+    template.replace("<!-- BOOK_TEXT -->", parts), encoding="utf-8")
+(destination / "conto" / "texto.template.html").unlink()
+
 # A CNAME means the site will be served from a custom domain root. Until then,
 # use the /<repository>/ base path used by GitHub project Pages URLs.
 prefix = "" if (source / "CNAME").exists() else f"/{repo.split('/')[-1]}"
