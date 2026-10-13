@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
       - name: Prepare the site for its URL
         run: python3 .github/scripts/prepare-pages.py site _site "$GITHUB_REPOSITORY"
       - name: Upload site artifact
