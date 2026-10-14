@@ -1,0 +1,23 @@
+.github/scripts/prepare-pages.py
+  s_cb98a6b9e3372b::t_dfe2db152acce2 9,16-20,68,72
+.github/workflows/pages.yml
+  s_cb98a6b9e3372b::t_afd53fb1683b4b 29,34-35
+site/index.html
+  s_cb98a6b9e3372b::t_4500bde6a21467 9-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eeb671067fac109d969b16043126980594d6d550",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
