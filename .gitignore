@@ -40,3 +40,6 @@ talk/**/erase-unha-vez.html
 
 # Trabajo local: borradores, ficheros de Affinity, zips de referencia (no se publica)
 _local/
+
+# Decoraciones de la presentación pendientes de sustituir por dibujos propios
+illustrations/decor/

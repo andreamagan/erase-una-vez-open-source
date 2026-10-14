@@ -1,0 +1,1201 @@
+<!doctype html><html lang="{{deck.lang}}"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{deck.title}}</title>
+<style>@font-face{font-family:'Outfit';font-style:normal;
+font-weight:300;font-display:swap;
+src:url({{asset:talk/deck/fonts/Outfit-Light.ttf}}) format('truetype')}
+@font-face{font-family:'Outfit';font-style:normal;
+font-weight:400;font-display:swap;
+src:url({{asset:talk/deck/fonts/Outfit-Regular.ttf}}) format('truetype')}
+@font-face{font-family:'Outfit';font-style:normal;
+font-weight:500;font-display:swap;
+src:url({{asset:talk/deck/fonts/Outfit-Medium.ttf}}) format('truetype')}
+@font-face{font-family:'Outfit';font-style:normal;
+font-weight:600;font-display:swap;
+src:url({{asset:talk/deck/fonts/Outfit-SemiBold.ttf}}) format('truetype')}
+@font-face{font-family:'Patrick Hand';font-style:normal;
+font-weight:400;font-display:swap;
+src:url({{asset:talk/deck/fonts/PatrickHand-Regular.ttf}}) format('truetype')}
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --crema:#FFFFFF; --tinta:#2B2118; --teja:#B5432E; --azul:#3C6C89;
+  --marron:#8A7356; --pendiente:#8A5A2E;
+  --r:9px;            /* redondeo de las esquinas exteriores: tapa y páginas */
+  /* Tipografía de TODO lo que está fuera del libro (evento, lugar, franja, Grazas).
+     Dentro del libro se sigue usando Patrick Hand. Cambia esta línea si quieres otra. */
+  --tipo-ui:"Outfit","Inter",ui-sans-serif,-apple-system,"SF Pro Display",
+            "Segoe UI",system-ui,sans-serif;
+}
+html,body{height:100%;overflow:hidden;background:#20201e;
+  font-family:"Patrick Hand",ui-rounded,"Segoe UI",system-ui,sans-serif}
+
+/* ---------- armazón ---------- */
+#app{position:fixed;inset:0;display:grid;grid-template-columns:1fr 0;
+     grid-template-rows:1fr 0;transition:grid-template-columns .25s,grid-template-rows .25s}
+#app.ensayo{grid-template-columns:1fr 440px;grid-template-rows:1fr 132px}
+#escena{position:relative;overflow:hidden;background:#20201e}
+#panel,#tira{overflow:hidden;opacity:0;pointer-events:none;transition:opacity .2s}
+#app.ensayo #panel,#app.ensayo #tira{opacity:1;pointer-events:auto}
+#panel{grid-column:2;grid-row:1/3;background:#17171a;color:#ded7cb;
+       display:flex;flex-direction:column;border-left:1px solid #2e2e33}
+#tira{grid-column:1;grid-row:2;background:#131316;border-top:1px solid #2e2e33}
+
+/* ---------- diapositiva ---------- */
+.marco{position:absolute;inset:0;opacity:0;visibility:hidden}
+.marco.activa{opacity:1;visibility:visible;z-index:2}
+.marco.sale,.marco.entra{opacity:1;visibility:visible;z-index:5}
+.celda{position:absolute;top:50%;left:50%;width:1920px;height:1080px;
+       margin:-540px 0 0 -960px;transform:scale(var(--k,.3));
+       transform-origin:center}
+/* Nada de 3D en la diapositiva quieta: preserve-3d / backface-visibility obligan a
+   Chromium a cachear la capa a resolución fija y las ilustraciones salen borrosas
+   al escalarlas. El pliegue vive en #libro, que sí tiene su propio 3D. */
+.vuelta{position:absolute;inset:0;transform-origin:0% 50%}
+.cara{position:absolute;inset:0}
+.vuelta > .dorso{display:none}          /* reverso heredado, sin uso */
+.sombra{position:absolute;inset:0;pointer-events:none;opacity:0;background:
+       linear-gradient(to right,rgba(0,0,0,.38),rgba(0,0,0,.06) 42%,transparent 72%)}
+/* la mesa azul; el libro se apoya encima y en el borde va el evento */
+.tablero{position:absolute;inset:0;background:
+   radial-gradient(125% 100% at 26% 26%,#1FBDBA 0,var(--evento-azul) 46%,var(--evento-azul2) 100%)}
+.papel{position:absolute;left:160px;top:60px;width:1600px;height:900px;overflow:hidden;
+   background:var(--crema);border-radius:var(--r);
+   box-shadow:0 26px 64px rgba(0,0,0,.46),0 0 0 1px rgba(20,14,6,.22)}
+.papel::after{content:'';position:absolute;left:50%;top:0;bottom:0;width:86px;
+   transform:translateX(-50%);pointer-events:none;z-index:3;background:linear-gradient(to right,
+   transparent,rgba(122,102,74,.10) 42%,rgba(122,102,74,.17) 50%,
+   rgba(122,102,74,.10) 58%,transparent)}
+.hoja{width:1920px;height:1080px;background:var(--crema);position:relative;
+      overflow:hidden;transform:scale(.8333333);transform-origin:top left}
+.franja{position:absolute;left:160px;right:160px;bottom:0;height:120px;
+   display:flex;align-items:center;justify-content:center;gap:18px;
+   font-family:var(--tipo-ui);font-weight:400;font-size:23px;letter-spacing:.045em;
+   color:#FFFFFF;opacity:.82}
+.franja i{display:block;width:5px;height:5px;border-radius:50%;
+   background:currentColor;opacity:.5}
+.fr-lugar{opacity:.72}
+.tablero.sin-evento .franja,.tablero.sin-evento .evento,
+.tablero.sin-evento .wc-logo,.tablero.sin-evento .wc-sky{display:none}
+/* ---------- identidad de WordCamp Galicia ---------- */
+/* Mismas proporciones que su plantilla: logo abajo a la izquierda, hashtag
+   abajo a la derecha, y la silueta de A Coruña al pie de portada y cierre. */
+.wc-logo{position:absolute;left:52px;bottom:26px;width:214px;height:72px;z-index:4;
+   background:url({{event:logo}}) left center/contain no-repeat;opacity:.96}
+.wc-tag{position:absolute;right:56px;bottom:44px;z-index:4;
+   font-family:var(--tipo-ui);font-weight:400;font-size:30px;letter-spacing:.01em;
+   color:#FFFFFF;opacity:.95}
+.wc-sky{position:absolute;left:0;right:0;bottom:0;height:264px;z-index:1;
+   background:url({{event:skyline}}) center bottom/100% auto no-repeat;opacity:.42}
+/* el libro siempre por delante de la silueta */
+.tablero .papel,.tablero .libro-obj{z-index:2}
+.tablero.sin-evento .wc-tag{display:none}
+/* en las intermedias, algo más discretos que en portada y cierre */
+.tablero:not(.portada-mesa):not(.cierre-mesa) .wc-logo{
+   left:46px;bottom:30px;width:168px;height:57px;opacity:.92}
+.tablero:not(.portada-mesa):not(.cierre-mesa) .wc-tag{
+   right:48px;bottom:46px;font-size:24px;opacity:.9}
+
+/* ---------- el azul: huellas sueltas y luz de mesa ---------- */
+.fondo{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.fondo .brillo{position:absolute;left:50%;top:44%;width:1680px;height:1180px;
+   transform:translate(-50%,-50%);border-radius:50%;
+   background:radial-gradient(closest-side,rgba(255,228,176,.115),transparent 70%)}
+.fondo .pa,.fondo .es{position:absolute;background:center/contain no-repeat}
+.fondo .pa{aspect-ratio:1.0448;background-image:url({{event:pattern}})}
+.fondo .es{aspect-ratio:.9913;background-image:url({{asset:illustrations/decor/estrela.png}});
+   filter:saturate(.35) brightness(1.9)}
+.fondo::after{content:'';position:absolute;inset:0;background:
+   radial-gradient(128% 104% at 50% 44%,transparent 48%,rgba(5,16,25,.5) 100%)}
+.hoja img{display:block;position:absolute}
+/* ---------- ilustración a doble página ---------- */
+.ilus.ancha{z-index:1}
+.remate.ancho,.tres.ancho{position:absolute;left:130px;right:130px;width:auto;
+   z-index:2;display:flex;flex-direction:column;justify-content:center;
+   text-align:center;text-wrap:balance}
+.remate.ancho{font-size:58px;line-height:1.28}
+.tres.ancho{font-size:34px;justify-content:flex-end;padding-bottom:6px}
+/* velo de crema bajo el texto, para que se lea sobre la línea del dibujo */
+.remate.ancho::before{content:'';position:absolute;z-index:-1;inset:-26px -40px;
+   background:radial-gradient(108% 130% at 50% 50%,
+   rgba(255,255,255,.93) 44%,rgba(255,255,255,.72) 72%,rgba(255,255,255,0) 100%)}
+.concepto{position:absolute;top:80px;left:130px;font-size:34px;color:var(--azul);
+     letter-spacing:.01em;opacity:.92}
+.concepto{display:none}
+.remate{position:absolute;font-size:70px;line-height:1.24;color:var(--teja);text-wrap:balance}
+.tres{position:absolute;font-size:34px;color:var(--azul);opacity:.7}
+.hueco{position:absolute;border:3px dashed #C98A52;display:grid;
+       place-content:center;text-align:center;gap:18px;padding:40px}
+.hueco em{font-style:normal;letter-spacing:.22em;text-transform:uppercase;
+       font-size:26px;color:var(--pendiente)}
+.hueco p{font-size:28px;line-height:1.55;color:#6b5a46}
+
+/* pie de margen a margen */
+.pie{position:absolute;left:130px;right:130px;bottom:54px;height:34px;
+     font-size:23px;color:var(--azul);z-index:6}
+/* 2026-09-29: as ilustracions agora poden chegar a sangre ata os bordos e
+   pasar por debaixo do pie -- faixa plana do mesmo crema da folla (sen
+   difuminado nin pastilla), pegada so ao propio pie cun folgo pequeno
+   arredor, non a folla enteira. Nas guardas (dedic/outro) non hai pie, así
+   que tampouco leva faixa. */
+.hoja::after{content:'';position:absolute;left:116px;right:116px;bottom:40px;
+     height:62px;background:var(--crema);pointer-events:none;z-index:5}
+.hoja.dedic::after,.hoja.outro::after{display:none}
+.pie span{position:absolute;top:0;line-height:34px;opacity:.62;white-space:nowrap}
+.pie .pt{left:0}
+.pie .pn{right:40px}
+.pie .patita{position:absolute;right:0;top:6px;height:22px;width:auto;opacity:.8}
+/* la flor, clavada sobre el lomo */
+.pie .flor{position:absolute;top:50%;left:728.4px;height:26px;width:auto;
+     transform:translateY(-50%);opacity:.9}
+.pie .d{position:absolute;top:50%;height:2px;opacity:.62;border-radius:2px;
+     transform:translateY(-50%);
+     background:repeating-linear-gradient(to right,var(--marron) 0 9px,transparent 9px 19px)}
+.pie .d1{left:var(--d1l,0px);width:var(--d1w,0px)}
+.pie .d2{left:var(--d2l,0px);width:var(--d2w,0px)}
+
+/* portada y cierre */
+/* ---------- el libro cerrado: portada y contracubierta ---------- */
+:root{ --evento-azul:#00A6A6; --evento-azul2:#008080; }   /* turquesa oficial */
+.tablero .evento{position:absolute;width:768px;top:50%;
+     transform:translateY(-50%);text-align:center;color:#FFFFFF;
+     font-family:var(--tipo-ui)}
+.portada-mesa .evento{left:96px}
+.ev-cen{display:block;margin:0 auto 30px}
+.ev-cen img{position:static;height:26px;opacity:.42;filter:saturate(.25) brightness(2.2)}
+/* el logo del evento va al lado del texto; si no hay fichero, se oculta solo */
+.ev-marca{display:flex;align-items:center;justify-content:center;gap:26px;
+     margin-bottom:6px;text-align:left}
+.ev-logo{position:static;flex:0 0 auto;width:104px;height:104px;object-fit:contain;
+     filter:drop-shadow(0 3px 10px rgba(0,0,0,.35))}
+.ev-marca .ev-txt{min-width:0}
+.ev-nombre{font-size:52px;line-height:1.1;font-weight:500;letter-spacing:-.012em}
+.ev-lugar{margin-top:12px;font-size:24px;font-weight:300;letter-spacing:.07em;opacity:.62}
+/* el hashtag, justo debajo de A Coruña · outubro */
+.ev-tag{margin-top:26px;font-family:var(--tipo-ui);font-weight:600;font-size:30px;
+     color:#FFFFFF;opacity:.95}
+/* portada: el logo oficial ocupa el sitio del nombre del evento */
+.ev-logo-gr{display:block;width:560px;height:188px;margin:0 auto;
+     background:url({{event:logo}}) center/contain no-repeat}
+.con-logo .ev-nombre{display:none}
+.con-logo .ev-lugar{margin-top:22px;font-size:27px;opacity:.72}
+/* portada y contracubierta: sólo el logo grande, nada en las esquinas */
+.portada-mesa .wc-tag,.cierre-mesa .wc-tag,
+.portada-mesa .wc-logo,.cierre-mesa .wc-logo{display:none}
+
+/* Portada rediseñada 2026-09-22: cartela de evento primeiro; a tapa do libro
+   e o fondo cambian ao facer clic (ver animaPortada) */
+.portada-mesa .evento{display:none}
+.portada-mesa .wc-logo{display:block;left:55px;top:40px;bottom:auto;width:185px;height:62px}
+.portada-mesa .wc-tag{display:block;right:46px;top:56px;bottom:auto;font-size:22px}
+/* 2026-09-22 v4: tipos, tamanos e cores tirados do .pptx oficial de WordCamp Galicia 2026
+   (titulo: Open Sans 42pt negrina #14284B - nome: Love Ya Like A Sister 26pt) */
+.portada-tit{display:none;position:absolute;left:55px;right:55px;top:289px;
+  text-align:center;font-family:"Open Sans",var(--tipo-ui);font-weight:700;font-size:121px;
+  line-height:1.15;color:#14284B}
+.portada-autora{display:none;position:absolute;left:55px;right:55px;top:658px;
+  transform:translateY(-50%);
+  text-align:center;font-family:"Love Ya Like A Sister",cursive;font-weight:400;font-size:75px;
+  color:#FFFFFF;opacity:1}
+.portada-mesa .portada-tit,.portada-mesa .portada-autora{display:block}
+
+/* 2026-09-22 v3: a tapa agarda oculta no centro; animaPortada() faina aparecer
+   e despregarse ao seu sitio final cando se fai clic na portada */
+.portada-mesa .libro-obj{opacity:0;left:400px}
+/* sin logo, el bloque vuelve a estar centrado */
+.ev-marca:not(:has(.ev-logo[src])){display:block;text-align:center}
+.ev-marca.sen-logo{display:block;text-align:center}
+
+/* Sin lomo: la tapa ocupa EXACTAMENTE el mismo rectángulo que media página
+   (960,60 · 800x900), para que abrir el libro y pasar hoja sean el mismo gesto. */
+.libro-obj{position:absolute;left:960px;top:60px;width:800px;height:900px;
+     border-radius:2px var(--r) var(--r) 2px;
+     box-shadow:0 18px 44px rgba(0,0,0,.42)}
+/* el canto de páginas asoma por el filo exterior: da grosor sin descuadrar nada */
+.libro-obj .bloque{position:absolute;right:-9px;top:16px;bottom:16px;width:11px;
+     border-radius:0 6px 6px 0;
+     background:repeating-linear-gradient(to right,#FFFFFF 0 3px,#D9D2C4 3px 6px);
+     box-shadow:inset 4px 0 9px rgba(98,88,72,.34)}
+.tapa-cara{position:absolute;inset:0;border-radius:inherit;overflow:hidden;
+     background:radial-gradient(120% 82% at 58% 30%,#FFFFFF 0,#FFFFFF 52%,#E9E1D1 100%)}
+/* la misma sombra de lomo que llevan las páginas, en su filo interior */
+.tapa-cara::before{content:'';position:absolute;left:0;top:0;bottom:0;width:43px;
+     z-index:4;pointer-events:none;background:linear-gradient(to right,
+     rgba(122,102,74,.17),rgba(122,102,74,.10) 42%,transparent)}
+.contracubierta .tapa-cara::before{left:auto;right:0;
+     background:linear-gradient(to left,
+     rgba(122,102,74,.17),rgba(122,102,74,.10) 42%,transparent)}
+/* textura de papel: muy leve, sólo para que no parezca un plano de color */
+.tapa-cara .grano{display:none;z-index:1;position:absolute;inset:0;pointer-events:none;background:
+     repeating-linear-gradient(0deg,rgba(122,100,68,.030) 0 1px,transparent 1px 3px),
+     repeating-linear-gradient(90deg,rgba(122,100,68,.022) 0 1px,transparent 1px 4px)}
+.libro-obj .recuadro{display:none;position:absolute;left:54px;right:54px;top:46px;bottom:46px;
+     border:2.5px solid var(--teja);opacity:.46;border-radius:3px}
+.libro-obj .recuadro::after{content:'';position:absolute;inset:9px;
+     border:1px solid var(--teja);opacity:.8;border-radius:2px}
+/* ramitas en las cuatro esquinas, a caballo del marco */
+.esq{display:none;position:absolute;width:64px;aspect-ratio:.7444;opacity:.62;
+   background:url({{asset:illustrations/decor/folla.png}}) center/contain no-repeat}
+.e1{left:40px;top:32px;transform:scaleY(-1)}
+.e2{right:40px;top:32px;transform:scale(-1)}
+.e3{left:40px;bottom:32px}
+.e4{right:40px;bottom:32px;transform:scaleX(-1)}
+
+.cub-tit{z-index:1;position:absolute;top:104px;left:78px;right:78px;text-align:center;
+     font-family:"Patrick Hand",ui-rounded,"Segoe UI",system-ui,sans-serif;font-weight:400;
+     font-size:50px;line-height:1.22;color:var(--teja);text-shadow:0 2px 12px rgba(255,255,255,.9),0 0 26px rgba(255,255,255,.7)}
+.cub-regla{display:none;position:absolute;top:342px;left:50%;transform:translateX(-50%)}
+.cub-regla img{position:static;display:block;height:24px;opacity:.9}
+.cub-sub{display:none;position:absolute;top:390px;left:100px;right:100px;text-align:center;
+     font-size:22px;line-height:1.45;color:var(--azul);opacity:.78}
+/* un plato de luz detrás del dibujo, para que no flote sobre el vacío */
+.cub-plato{position:absolute;left:106px;right:106px;top:478px;height:326px;
+     border-radius:50% / 46%;background:radial-gradient(closest-side,
+     rgba(60,108,137,.155),rgba(60,108,137,.05) 68%,transparent)}
+.cub-img{position:absolute;top:498px;left:50%;transform:translateX(-50%)}
+/* sello con la patita y la firma */
+.cub-sello{position:absolute;left:50%;bottom:74px;transform:translateX(-50%);
+     display:flex;align-items:center;gap:13px;padding:8px 26px 8px 18px;
+     border:1.5px solid rgba(181,67,46,.40);border-radius:40px;
+     background:rgba(255,255,255,.72)}
+.cub-sello i{flex:0 0 auto;width:31px;aspect-ratio:1.1415;opacity:.55;
+   background:url({{asset:illustrations/decor/pegada.png}}) center/contain no-repeat}
+.cub-sello span{font-family:"Love Ya Like A Sister",cursive;font-weight:400;font-size:33px;color:var(--azul);opacity:.84;white-space:nowrap}
+
+/* contracubierta */
+.contracubierta .cub-regla{top:350px}
+.con-img{position:absolute;top:352px;left:50%;transform:translateX(-50%);opacity:.92}
+.con-colofon{position:absolute;top:200px;left:100px;right:100px;text-align:center;
+     font-size:24px;line-height:1.45;color:var(--azul);opacity:.58;z-index:1}
+.cub-fin{position:absolute;top:70px;left:84px;right:84px;text-align:center;
+     font-family:"Patrick Hand",ui-rounded,"Segoe UI",system-ui,sans-serif;
+     font-size:40px;line-height:1.32;color:var(--teja);opacity:.88;z-index:1}
+
+/* la contracubierta se cierra hacia la izquierda: su filo exterior es el izquierdo */
+.cierre-mesa .evento{right:96px}
+.gr-txt{font-family:var(--tipo-ui);font-weight:500;font-size:94px;line-height:1;
+     letter-spacing:-.02em;color:#FFFFFF;margin-bottom:36px}
+.contracubierta{left:160px;border-radius:var(--r) 2px 2px var(--r)}
+.contracubierta .bloque{right:auto;left:-9px;border-radius:6px 0 0 6px;
+     background:repeating-linear-gradient(to left,#FFFFFF 0 3px,#D9D2C4 3px 6px);
+     box-shadow:inset -4px 0 9px rgba(98,88,72,.34)}
+
+/* ---------- guarda: el patrón de huellas, media hoja ---------- */
+/* Delante cubre la página izquierda de la dedicatoria; al final, la derecha.
+   Como en el libro, la página de guarda no lleva pie. */
+.gd-pat{position:absolute;top:0;bottom:0;width:960px;
+     background:url({{asset:illustrations/decor/garda-pegadas.webp}}) center/cover no-repeat}
+.gd-pat.izq{left:0}
+.gd-pat.der{right:0}
+/* las hojas que tocan la guarda van sin pie: ni cenefa ni nombre */
+.dedic .pie,.outro .pie{display:none}
+
+/* el outro se queda entero en la página izquierda */
+.outro .out-tit{left:130px;right:1040px;top:50%;transform:translateY(-50%);font-size:70px;line-height:1.16}
+.out-pata{position:absolute;left:130px;right:1040px;top:calc(50% - 132px);width:52px;height:auto;margin:0 auto;display:block;opacity:.85;transform:rotate(-9deg)}
+.outro .out-sub{left:130px;right:1040px;top:452px;font-size:32px;line-height:1.38;text-wrap:balance}
+.outro .qr{left:505px;top:576px;width:228px;height:228px}
+.contracubierta .qr{top:242px}
+.gr-ante{font-family:var(--tipo-ui);font-weight:300;font-size:34px;letter-spacing:.05em;
+     color:#FFFFFF;opacity:.72;margin-bottom:22px}
+
+/* ---------- primera página: dedicatoria ---------- */
+.dedic{display:block}
+/* como en un libro: la dedicatoria va en la página derecha, la izquierda en blanco.
+   Caja de la página derecha: de 1046 a 1790, centro en 1418. */
+.ded-txt{position:absolute;top:288px;left:1046px;right:130px;text-align:center;
+     font-size:50px;line-height:1.44;color:var(--teja)}
+.ded-cen{position:absolute;top:566px;left:1418px;transform:translateX(-50%)}
+.ded-cen img{position:static;height:28px;opacity:.8}
+.ded-nombre{position:absolute;top:646px;left:1046px;right:130px;text-align:center;
+     font-size:42px;color:var(--azul)}
+.ded-rol{position:absolute;top:710px;left:1046px;right:130px;text-align:center;
+     font-size:27px;color:var(--azul);opacity:.62}
+
+.out-tit{position:absolute;top:210px;left:0;right:0;text-align:center;
+     font-size:92px;color:var(--teja)}
+.out-sub{position:absolute;top:356px;left:0;right:0;text-align:center;
+     font-size:42px;color:var(--azul);opacity:.78}
+.qr{position:absolute;top:500px;left:50%;transform:translateX(-50%);
+     width:252px;height:252px;border:3px dashed #C98A52;display:grid;
+     place-items:center;color:var(--pendiente);font-size:28px;text-align:center;z-index:1}
+.qr.lleno{border:none;display:block;padding:12px;background:#FFFFFF;
+     border-radius:14px;box-shadow:0 3px 14px rgba(60,40,20,.20)}
+.qr.lleno img{width:100%;height:100%;object-fit:contain;display:block;border-radius:4px}
+
+/* ---------- transiciones ---------- */
+/* la hoja se dobla por el medio: la mitad derecha gira sobre el lomo central */
+#libro{display:none;z-index:8}
+#libro.on{display:block;opacity:1;visibility:visible}
+#libro .celda{box-shadow:0 16px 60px rgba(0,0,0,.55)}
+#libro .hoja{box-shadow:none}
+.paginas{position:absolute;inset:0}
+.giro3d{position:absolute;inset:0;perspective:4400px;pointer-events:none;z-index:3}
+.mesa{position:absolute;inset:0;overflow:hidden}
+.mesa .papel{visibility:hidden}
+.fija{position:absolute;top:60px;width:800px;height:900px;overflow:hidden;
+      background:var(--crema)}
+.f-izq{left:160px}   .f-der{left:960px}
+/* las mitades heredan el redondeo por su filo exterior; el del lomo queda recto */
+.f-izq,.gira .dorso{border-radius:var(--r) 0 0 var(--r)}
+.f-der,.gira .frente{border-radius:0 var(--r) var(--r) 0}
+.fija .papel,.gira .papel{position:absolute;top:0;box-shadow:none}
+.f-izq .papel,.gira .dorso .papel{left:0}
+.f-der .papel,.gira .frente .papel{left:-800px}
+.gira{position:absolute;top:60px;left:960px;width:800px;height:900px;
+      transform-style:preserve-3d;transform-origin:0% 50%}
+.gira .cara{position:absolute;inset:0;overflow:hidden;background:var(--crema);
+      backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.gira .dorso{transform:rotateY(180deg)}
+/* sombras: el canto del pliegue y la que proyecta sobre la mitad quieta */
+.gira .canto{position:absolute;inset:0;pointer-events:none;opacity:0;
+      background:linear-gradient(to right,rgba(74,58,38,.42),rgba(74,58,38,.06) 34%,transparent 62%)}
+.gira .dorso .canto{background:linear-gradient(to left,rgba(74,58,38,.42),
+      rgba(74,58,38,.06) 34%,transparent 62%)}
+.proyectada{position:absolute;top:60px;left:160px;width:800px;height:900px;opacity:0;
+      pointer-events:none;background:linear-gradient(to left,rgba(40,30,18,.5),
+      rgba(40,30,18,.12) 45%,transparent 78%)}
+#app.volteando .marco:not(#libro){visibility:hidden}
+/* mitad izquierda: página anterior · mitad derecha: siguiente */
+.zona{position:absolute;top:0;bottom:0;width:50%;z-index:6}
+.zi{left:0;cursor:w-resize}
+.zd{right:0;cursor:e-resize}
+#app.rejilla .zona,#app.volteando .zona{display:none}
+#app.colocando .zona{display:none}
+
+/* ---------- modo colocar ---------- */
+.movible{outline:2px dashed rgba(60,108,137,.55);outline-offset:4px;cursor:grab}
+.movible:hover{outline-color:rgba(60,108,137,.9)}
+.movible.elegido{outline:2.5px solid var(--teja);outline-offset:4px;
+   box-shadow:0 0 0 9999px rgba(0,0,0,.02)}
+/* asa de la esquina para redimensionar (flotante: un <img> no admite ::after) */
+#asa{position:fixed;z-index:59;width:20px;height:20px;margin:-10px 0 0 -10px;
+   background:var(--teja);border:3px solid #fff;border-radius:5px;
+   cursor:nwse-resize;box-shadow:0 2px 8px rgba(0,0,0,.4);pointer-events:none}
+#barra-col{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;
+   display:flex;align-items:center;gap:16px;padding:12px 18px;border-radius:12px;
+   background:rgba(24,24,26,.94);color:#EDE6DA;
+   font:500 14px/1.3 ui-sans-serif,system-ui;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+#barra-col[hidden]{display:none}
+#barra-col b{font-weight:600;color:#F0C9A0;letter-spacing:.04em}
+#coord{font:500 13px ui-monospace,SFMono-Regular,Menlo,monospace;color:#9ED0E8;
+   min-width:290px;white-space:nowrap}
+#barra-col .tip{white-space:nowrap}
+@media (max-width:1180px){ #barra-col .tip{display:none} }
+#barra-col button{font:600 13px ui-sans-serif,system-ui;color:#EDE6DA;cursor:pointer;
+   background:#35353a;border:1px solid #4a4a52;border-radius:8px;padding:7px 13px}
+#barra-col button:hover{background:#44444b}
+#barra-col .tip{color:#9a9288;font-weight:400}
+#aviso-col{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);z-index:61;
+   padding:10px 16px;border-radius:10px;background:#2E8B87;color:#fff;
+   font:600 14px ui-sans-serif,system-ui;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+/* la portada: la tapa gira sobre el lomo del libro y el azul se desvanece.
+   El azul y la página de debajo van en capas planas propias, fuera del 3D,
+   para que la tapa siempre se pinte por delante. */
+.velo{display:none;position:absolute;inset:0;overflow:hidden;z-index:1}
+.mesa{z-index:0}
+.paginas{z-index:2}
+/* El velo lleva SÓLO los rótulos de la diapositiva que se va; el azul lo pinta la
+   mesa. Así los dos rótulos se cruzan sobre el mismo fondo y no salta nada al final. */
+#libro.tapa .velo{display:block}
+#libro.tapa .velo .tablero{background:none;box-shadow:none}
+#libro.tapa .velo .libro-obj,.velo .papel{display:none}
+#libro.abre .f-izq{display:none}          /* al abrir no hay página izquierda */
+#libro.cierra .f-der{display:none}        /* al cerrar no queda página derecha */
+#libro.tapa .mesa .libro-obj{display:none}   /* la tapa sólo existe en la capa que gira */
+/* La tapa gira en el MISMO hueco que media página (.gira sin tocar: 960,60 · 800x900).
+   Sólo se recorta su mitad del tablero y se libera el desbordamiento de esa cara. */
+#libro.tapa .gira .cara .tablero{position:absolute;top:-60px;width:1920px;height:1080px;
+     background:none}
+#libro.tapa .gira .cara .tablero > :not(.libro-obj){display:none}
+#libro.abre   .gira .frente{overflow:visible;background:none}
+#libro.abre   .gira .frente .tablero{left:-960px}
+#libro.cierra .gira .dorso{overflow:visible;background:none}
+#libro.cierra .gira .dorso  .tablero{left:-160px}
+#libro.tapa .gira .libro-obj{box-shadow:0 18px 44px rgba(0,0,0,.42)}
+#libro.tapa .proyectada{display:none}
+
+
+.trans-lateral .marco.sale .vuelta{animation:latSale  .48s cubic-bezier(.4,0,.2,1) forwards}
+.trans-lateral .marco.entra .vuelta{animation:latEntra .48s cubic-bezier(.4,0,.2,1) forwards}
+.trans-lateral.atras .marco.sale  .vuelta{animation-name:latSaleAtras}
+.trans-lateral.atras .marco.entra .vuelta{animation-name:latEntraAtras}
+@keyframes latSale      {to{transform:translateX(-104%)}}
+@keyframes latEntra     {from{transform:translateX(104%)} to{transform:none}}
+@keyframes latSaleAtras {to{transform:translateX(104%)}}
+@keyframes latEntraAtras{from{transform:translateX(-104%)}to{transform:none}}
+
+/* ---------- rejilla ---------- */
+#app.rejilla #escena{overflow:auto;perspective:none;padding:26px;
+     display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+     gap:20px;align-content:start;align-items:start}
+#app.rejilla #libro{display:none!important}
+#app.rejilla .marco{position:relative;inset:auto;opacity:1;visibility:visible;
+     height:0;padding-top:56.25%;            /* 16:9 fiable en cualquier navegador */
+     overflow:hidden;cursor:pointer;border-radius:6px;background:var(--crema);
+     outline:2px solid transparent;outline-offset:0}
+#app.rejilla .marco.activa{outline-color:var(--teja)}
+#app.rejilla .vuelta{animation:none!important;transform:none!important}
+#app.rejilla .sombra,#app.rejilla .dorso{display:none}
+#app.rejilla .hoja{box-shadow:none}
+#app.rejilla .marco::after{content:attr(data-n);position:absolute;left:8px;bottom:6px;
+     font:600 12px system-ui;color:#fff;background:rgba(0,0,0,.45);
+     padding:2px 7px;border-radius:10px}
+
+/* ---------- panel de ensayo ---------- */
+#reloj{padding:18px 20px 12px;border-bottom:1px solid #2e2e33}
+#grande{font:700 46px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}
+#estado{margin-top:6px;font:500 13px system-ui;color:#9a9288}
+#estado b{font-weight:600}
+.bien{color:#7fc08a}.justo{color:#e0b15c}.tarde{color:#e07a5f}
+#barra{height:5px;background:#2a2a2e;border-radius:3px;margin-top:12px;overflow:hidden}
+#barra i{display:block;height:100%;background:var(--teja);width:0;transition:width .4s}
+#cab{padding:14px 20px 0;font:600 12px system-ui;letter-spacing:.14em;
+     text-transform:uppercase;color:#7d766c}
+#nota{flex:1;overflow:auto;padding:10px 20px 20px;font-size:21px;line-height:1.6;
+     color:#e6dfd3;white-space:pre-wrap}
+#nota .marca{color:#e0b15c;font-style:italic}
+#sig{padding:12px 20px 16px;border-top:1px solid #2e2e33;font:500 13px system-ui;color:#8e867c}
+#sig b{display:block;margin-top:4px;font:400 19px "Patrick Hand",system-ui;color:#c9b6a4}
+#evbox{padding:12px 20px 14px;border-top:1px solid #2e2e33;display:grid;gap:7px}
+#evbox .ev-sw{font:500 12px system-ui;color:#9a9288;display:flex;align-items:center;gap:7px;
+     cursor:pointer;user-select:none}
+#evbox input[type=text]{background:#101014;border:1px solid #34343a;border-radius:6px;
+     color:#ded7cb;font:400 13px system-ui;padding:7px 9px}
+#evbox input[type=text]:focus{outline:none;border-color:var(--teja)}
+#botones{display:flex;gap:8px;padding:12px 20px 16px;border-top:1px solid #2e2e33;flex-wrap:wrap}
+#botones button{font:500 12px system-ui;color:#ded7cb;background:#26262b;
+     border:1px solid #34343a;border-radius:7px;padding:7px 11px;cursor:pointer}
+#botones button:hover{background:#31313a}
+#botones button[aria-pressed=true]{background:var(--teja);border-color:var(--teja);color:#fff}
+#botones kbd{font:600 10px ui-monospace,monospace;margin-left:5px;padding:1px 5px;border-radius:4px;
+     background:rgba(255,255,255,.09);color:inherit;opacity:.8}
+#botones .grupo{display:inline-flex}
+#botones .grupo button:first-child{border-radius:7px 0 0 7px}
+#botones .grupo button+button{border-radius:0 7px 7px 0;border-left:none}
+#botones .info{margin-left:auto;width:28px;height:28px;padding:0;border-radius:50%;
+     font:italic 600 14px Georgia,serif;opacity:.7}
+#botones .info:hover{opacity:1}
+
+/* tira de miniaturas */
+#tira{display:flex;gap:7px;align-items:center;padding:0 14px;overflow-x:auto}
+.mini{flex:none;width:112px;height:63px;border-radius:5px;border:1px solid #35353c;
+     background:var(--crema);cursor:pointer;position:relative;overflow:hidden;padding:0}
+.mini .lienzo{position:absolute;inset:0;display:block}
+.mini .lienzo .tablero{position:absolute;top:0;left:0;width:1920px;height:1080px;
+     transform:scale(.0583);transform-origin:top left}
+.mini span{position:absolute;left:3px;bottom:2px;z-index:2;font:600 10px system-ui;
+     color:#fff;background:rgba(0,0,0,.42);padding:1px 5px;border-radius:9px}
+.mini:hover{border-color:#6b6b76}
+.mini[aria-current=true]{border-color:var(--teja);box-shadow:0 0 0 2px rgba(181,67,46,.5)}
+
+/* ayuda */
+#ayuda{position:fixed;inset:0;background:rgba(12,12,14,.88);display:none;
+     place-items:center;z-index:50;color:#e6dfd3}
+#ayuda.on{display:grid}
+#ayuda div{max-width:560px;font:400 16px/2 system-ui}
+#ayuda kbd{display:inline-block;min-width:26px;text-align:center;background:#2b2b31;
+     border:1px solid #3c3c44;border-bottom-width:2px;border-radius:6px;
+     padding:1px 7px;font:600 13px ui-monospace,monospace;margin-right:10px}
+#pista{position:fixed;right:14px;bottom:12px;font:500 12px system-ui;color:#6d6a66;z-index:40}
+#app.ensayo ~ #pista{display:none}
+@font-face{font-family:"Open Sans";font-style:normal;font-weight:400;font-display:swap;src:url({{asset:talk/deck/fonts/OpenSans-Regular.ttf}}) format("truetype")}
+@font-face{font-family:"Open Sans";font-style:normal;font-weight:700;font-display:swap;src:url({{asset:talk/deck/fonts/OpenSans-Bold.ttf}}) format("truetype")}
+@font-face{font-family:"Love Ya Like A Sister";font-style:normal;font-weight:400;font-display:swap;src:url({{asset:talk/deck/fonts/LoveYaLikeASister-Regular.ttf}}) format("truetype")}
+</style></head><body>
+
+<div id="app" class="trans-pagina">
+  <div id="escena">
+{{slides}}
+    <i class="zona zi" title="Anterior"></i>
+    <i class="zona zd" title="Seguinte"></i>
+    <div class="marco" id="libro"><div class="celda">
+      <div class="mesa"></div>
+      <div class="velo"></div>
+      <div class="paginas">
+        <div class="fija f-izq"></div>
+        <div class="fija f-der"></div>
+        <i class="proyectada"></i>
+      </div>
+      <div class="giro3d"><div class="gira">
+        <div class="cara frente"><i class="canto"></i></div>
+        <div class="cara dorso"><i class="canto"></i></div>
+      </div></div>
+    </div></div>
+  </div>
+
+  <aside id="panel">
+    <div id="reloj">
+      <div id="grande">00:00</div>
+      <div id="estado">Cronómetro parado · pulsa S para empezar</div>
+      <div id="barra"><i></i></div>
+    </div>
+    <div id="cab"></div>
+    <div id="nota"></div>
+    <div id="sig"></div>
+    <div id="evbox">
+      <label class="ev-sw"><input type="checkbox" id="evActivo"> Mostrar o evento</label>
+      <input type="text" id="evNombre" placeholder="Nome do evento">
+      <input type="text" id="evLugar"  placeholder="Lugar e data">
+    </div>
+    <div id="botones">
+      <button id="bModo">Vista limpia <kbd>E</kbd></button>
+      <button id="bRej">Rejilla <kbd>G</kbd></button>
+      <span class="grupo"><button id="bCrono" aria-pressed="false">Cronómetro <kbd>S</kbd></button><button id="bCero" title="Poñer a cero (R)" aria-label="Poñer o cronómetro a cero">↺ <kbd>R</kbd></button></span>
+      <button id="bAyuda" class="info" title="Teclas (?)" aria-label="Teclas">i</button>
+    </div>
+  </aside>
+
+  <div id="tira">
+{{minis}}
+
+  </div>
+</div>
+
+<div id="ayuda"><div>
+  <p><kbd>→</kbd> seguinte &nbsp;·&nbsp; <kbd>←</kbd> anterior &nbsp;·&nbsp; <kbd>␣</kbd> avanzar</p>
+  <p><kbd>E</kbd> vista de ensaio / vista limpa</p>
+  <p><kbd>G</kbd> rexilla de miniaturas</p>
+  <p><kbd>V</kbd> amosar ou agochar o evento na portada</p>
+  <p><kbd>M</kbd> colocar as ilustracións: arrastra para movelas, tira da esquina
+     para escalalas, e as frechas moven de un en un píxel</p>
+  <p><kbd>S</kbd> arrancar / parar o cronómetro &nbsp;·&nbsp; <kbd>R</kbd> poñelo a cero</p>
+  <p><kbd>F</kbd> pantalla completa &nbsp;·&nbsp; <kbd>Esc</kbd> saír</p>
+  <p><kbd>?</kbd> abrir e pechar esta axuda</p>
+</div></div>
+<div id="barra-col" hidden>
+  <b>COLOCAR</b>
+  <span id="coord">—</span>
+  <span class="tip">arrastra · esquina para escalar · ↑↓←→ fino · Tab cambia · Maiús ×10</span>
+  <button onclick="reponAx()">Repoñer</button>
+  <button onclick="copiaAx()">Descargar axustes</button>
+  <button onclick="colocar()">Saír (M)</button>
+</div>
+<i id="asa" hidden></i>
+<div id="aviso-col" hidden></div>
+<div id="pista">E · ensaio &nbsp; G · rexilla &nbsp; M · colocar &nbsp; ? · axuda</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   EL EVENTO — cámbialo aquí y ya está. Con activo:false desaparece
+   el azul y la portada queda sólo con el libro.
+   También puedes editarlo en vivo desde la vista de ensayo (tecla V).
+   ═══════════════════════════════════════════════════════════════ */
+const EVENTO = {
+  activo: true,
+  nombre: {{event.name|js}},
+  lugar:  {{event.place|js}},
+  /* Logo del evento, al lado del texto. Vacío = usa solo el logo oficial ya
+     incrustado (__WCLOGO__). Para otro evento: pon aquí el nombre de un
+     fichero junto a este HTML, una URL, o un data:image/...;base64,...       */
+  logo:   ''
+};
+
+const D = {{notes}};
+const app=document.getElementById('app'), escena=document.getElementById('escena');
+const celdas=[...document.querySelectorAll('.marco:not(#libro)')];
+const libro=document.getElementById('libro');
+const fIzq=libro.querySelector('.f-izq'), fDer=libro.querySelector('.f-der');
+const gira=libro.querySelector('.gira');
+const caraF=libro.querySelector('.frente'), caraD=libro.querySelector('.dorso');
+const proy=libro.querySelector('.proyectada');
+const velo=libro.querySelector('.velo'), mesa=libro.querySelector('.mesa');
+const minis=[...document.querySelectorAll('.mini')];
+let i=0, animando=false, trans='pagina', cola=0;
+let t0=null, corriendo=false, transcurrido=0;
+
+/* --- escala --- */
+function ajusta(){
+  celdas.forEach(c=>{
+    const r=c.getBoundingClientRect();
+    const k=Math.min(r.width/1920, r.height/1080);
+    c.firstElementChild.style.setProperty('--k', k||0.01);
+  });
+}
+addEventListener('resize', ajusta);
+
+/* las dos rayitas van del texto a la cenefa; el ancho del texto depende de la
+   tipografía, así que se mide una vez y se reparte a todas las diapositivas */
+const ORN_L=728.4, ORN_W=198.9, PIE_W=1660, HUECO=16;
+function colocaPie(){
+  /* 2026-09-22: cada pagina mide e coloca as suas propias rayitas, porque o
+     texto de .pn xa non e sempre igual (agora leva o concepto de cada paxina) */
+  document.querySelectorAll('.marco:not(#libro) .pie').forEach(pie=>{
+    const ptEl=pie.querySelector('.pt'), pnEl=pie.querySelector('.pn');
+    if(!ptEl || !pnEl) return;
+    const tw=ptEl.offsetWidth, nw=pnEl.offsetWidth;
+    const d1l=tw+18,               d1w=Math.max(0, ORN_L-HUECO-d1l);
+    const d2l=ORN_L+ORN_W+HUECO,   d2w=Math.max(0, (PIE_W-40-nw-18)-d2l);
+    pie.style.setProperty('--d1l',d1l+'px'); pie.style.setProperty('--d1w',d1w+'px');
+    pie.style.setProperty('--d2l',d2l+'px'); pie.style.setProperty('--d2w',d2w+'px');
+  });
+}
+new ResizeObserver(()=>ajusta()).observe(escena);
+
+/* --- navegación --- */
+function copia(k){                       // una página del libro
+  const e=celdas[k].querySelector('.papel');
+  return e? e.cloneNode(true) : document.createElement('div');
+}
+function copiaMesa(k){                   // el azul con su franja
+  const t=celdas[k].querySelector('.tablero').cloneNode(true);
+  return t;
+}
+const esLibro = k => !celdas[k].querySelector('.papel');   // portada y contracubierta
+function copiaLibro(k){                  // la tapa, recolocada en el hueco que gira
+  return celdas[k].querySelector('.tablero').cloneNode(true);
+}
+function pon(cont, nodo){                 // deja sólo el clon nuevo, conserva .canto
+  [...cont.children].forEach(n=>{ if(!n.classList.contains('canto')) n.remove(); });
+  cont.insertBefore(nodo, cont.firstChild); }
+
+/* la hoja se dobla por el lomo central: la mitad derecha gira sobre la izquierda */
+function dobla(desde, hasta, dir, fin){
+  const A = dir>0 ? desde : hasta;
+  const B = dir>0 ? hasta : desde;
+  /*  Siempre el mismo pliegue: la mitad derecha gira sobre el lomo central.
+      Cuando A es la portada, esa cara es la tapa y no hay página izquierda.
+      Cuando B es la contracubierta, el dorso es la tapa y no hay página derecha:
+      detrás sólo queda el fondo.                                            */
+  const libroA = esLibro(A), libroB = esLibro(B);
+  libro.classList.toggle('tapa', libroA || libroB);
+  libro.classList.toggle('abre', libroA);
+  libro.classList.toggle('cierra', libroB);
+  pon(mesa, copiaMesa(B));
+  if(libroA || libroB) pon(velo, copiaMesa(A));   // rótulos de la que se va
+
+  // 2026-09-22: se a cara e do libro (tapa/contratapa), o "fondo por defecto"
+  // de .gira .cara debe ser o teal, non o crema -- se o clon pesado (toda a
+  // mesa da portada/contracuberta) tarda un intre en pintar, o que se ve
+  // mentres tanto e o teal correcto, non un flash branco/crema
+  caraF.style.background = libroA ? 'var(--evento-azul)' : '';
+  caraD.style.background = libroB ? 'var(--evento-azul)' : '';
+  pon(caraF, libroA ? copiaLibro(A) : copia(A));    // cara que gira
+  pon(caraD, libroB ? copiaLibro(B) : copia(B));    // su dorso
+  if(!libroA) pon(fIzq, copia(A));                  // página izquierda quieta
+  if(!libroB) pon(fDer, copia(B));                  // página derecha quieta
+  const re=escena.getBoundingClientRect();
+  libro.firstElementChild.style.setProperty('--k',
+      Math.min(re.width/1920, re.height/1080) || 0.01);
+  libro.classList.add('on'); app.classList.add('volteando');
+  const tapa = libroA || libroB;
+  /* Un único pliegue: misma duración y misma curva abra, pase o cierre.
+     El pequeño translateZ hace que la hoja se despegue en vez de girar en seco. */
+  const t=880, ease='cubic-bezier(.38,.02,.22,1)', rev = dir<0;
+  const opts={duration:t, easing:ease, direction: rev?'reverse':'normal', fill:'forwards'};
+  const lin={...opts, easing:'linear'};
+  const a1=gira.animate([
+      {transform:'translateZ(0px) rotateY(0deg)'},
+      {transform:'translateZ(20px) rotateY(-90deg)', offset:.5},
+      {transform:'translateZ(0px) rotateY(-180deg)'}], opts);
+  caraF.querySelector('.canto').animate(
+     [{opacity:0},{opacity:.75,offset:.45},{opacity:0}], lin);
+  caraD.querySelector('.canto').animate(
+     [{opacity:0},{opacity:.75,offset:.55},{opacity:0}], lin);
+  if(tapa){
+    // el rótulo grande del evento y la franja de pie se relevan sin cortes
+    const sale = velo.querySelector('.evento,.franja');
+    if(sale) sale.animate([{opacity:1,offset:0},{opacity:1,offset:.22},
+                           {opacity:0,offset:.64},{opacity:0,offset:1}], lin);
+    const entra = mesa.querySelector('.evento,.franja');
+    /* el pequeño ascenso va en `translate`, NO en `transform`: así no pisa el
+       translateY(-50%) que centra el bloque y no salta al soltar la animación */
+    if(entra) entra.animate([{opacity:0,translate:'0 16px',offset:0},
+                             {opacity:0,translate:'0 16px',offset:.42},
+                             {translate:'0 0',offset:1}],   // opacidad: la suya
+                            {...opts, easing:'cubic-bezier(.2,.7,.3,1)'});
+    // 2026-09-22: o fondo/skyline atenúase xusto cando o libro se abre (non antes)
+    const skySale = velo.querySelector('.wc-sky');
+    if(skySale) skySale.animate([{opacity:1},{opacity:.5}], opts);
+  }else{
+    proy.animate([{opacity:0},{opacity:.55,offset:.5},{opacity:0}], lin);
+  }
+  const cierra=()=>{ libro.classList.remove('on'); app.classList.remove('volteando');
+                     gira.getAnimations().forEach(x=>x.cancel()); };
+  const red=setTimeout(()=>{ cierra(); fin(); }, t+260);   // red de seguridad
+  a1.onfinish = () => { clearTimeout(red); cierra(); fin(); };
+}
+
+function ve(j, dir){
+  j=Math.max(0,Math.min(D.length-1,j));
+  if(animando){ const d=j-i;                   // acumula los pasos pedidos
+                cola = Math.abs(d)===1 ? cola+d : d; return; }
+  if(j===i) return;
+  if(app.classList.contains('rejilla')){ pinta(j); return; }
+  dir = dir || (j>i? 1 : -1);
+  animando=true;
+  const fin=()=>{ if(!animando) return; limpia(); pinta(j); animando=false;
+                  if(cola){ const d=cola; cola=0; ve(i+d, d>0?1:-1); } };
+  /* 2026-10-12: de la 1 a la 2, transición propia: el título se funde, el evento baja
+     a su sitio en la 2 y el libro sube desde abajo. */
+  const sinLibro = i===0 && j===1 && dir>0;
+  const vuelta1 = i===1 && j===0 && dir<0;     // de la 2 a la 1: el mismo recorrido al revés
+  if(vuelta1){
+    const de=i; i=j; refresca();
+    transTituloAtras(de, j, fin);
+  }else if(sinLibro){
+    const de=i; i=j; refresca();
+    transTitulo(de, j, fin);
+  }else if(trans==='pagina'){
+    const de=i; i=j; refresca();
+    dobla(de, j, dir, fin);
+  }else{
+    app.classList.toggle('atras', dir<0);
+    limpia();
+    celdas[i].classList.add('sale'); celdas[j].classList.add('entra');
+    celdas[i].querySelector('.vuelta')
+             .addEventListener('animationend', fin, {once:true});
+    setTimeout(fin, 700);
+    i=j; refresca();
+  }
+}
+
+/* ---- de la 2 a la 1: el libro sale por la derecha, el logo y el hashtag vuelven arriba, el título y el evento se funden ---- */
+function transTituloAtras(de, a, fin){
+  const A=celdas[de], B=celdas[a];                 // A = la 2 (se va), B = la 1 (vuelve)
+  limpia();
+  A.querySelector('.vuelta').style.animation='none';
+  B.querySelector('.vuelta').style.animation='none';
+  const tab=A.querySelector('.tablero'), tr=tab.getBoundingClientRect();
+  const k = tr.width/1920 || 1;   // escala real da diapositiva (non o ancho da xanela)
+  const libro=A.querySelector('.libro-obj');
+  if(libro) libro.animate([{transform:'translateX(0px)',opacity:1},{transform:'translateX(1100px)',opacity:0}],
+                          {duration:900, easing:'cubic-bezier(.55,0,.8,.35)', fill:'forwards'});
+  /* la copia del logo y del hashtag de la 2 vuelve a su sitio en la 1 (posición calculada antes de ocultar la de la 1) */
+  function vuelve(origen, destino, retraso){
+    if(!origen || !destino) return;
+    const a=origen.getBoundingClientRect(), b=destino.getBoundingClientRect();
+    const c=origen.cloneNode(true);
+    c.classList.add('clon-wc');
+    Object.assign(c.style,{position:'absolute', margin:'0', right:'auto', bottom:'auto',
+      left:((a.left-tr.left)/k)+'px', top:((a.top-tr.top)/k)+'px',
+      width:(a.width/k)+'px', height:(a.height/k)+'px', transform:'none', zIndex:'50'});
+    tab.appendChild(c);
+    origen.style.visibility='hidden';
+    c.style.transformOrigin='0 0';
+    c.animate([{translate:'0px 0px', scale:'1'},
+               {translate:`${(b.left-a.left)/k}px ${(b.top-a.top)/k}px`, scale:`${b.width/a.width}`}],
+              {duration:900, delay:retraso, easing:'cubic-bezier(.45,0,.2,1)', fill:'forwards'});
+  }
+  vuelve(A.querySelector('.wc-logo'), B.querySelector('.wc-logo'), 850);
+  vuelve(A.querySelector('.wc-tag'),  B.querySelector('.wc-tag'),  850);
+  B.querySelectorAll('.wc-logo,.wc-tag').forEach(n=>n.style.visibility='hidden');
+  /* título, autora y evento de la 1 vuelven con un fundido */
+  const fade={duration:500, easing:'ease-in-out', fill:'both', delay:1500};
+  [B.querySelector('.portada-tit'), B.querySelector('.portada-autora'), B.querySelector('.evento')]
+    .forEach(el=>el && el.animate([{opacity:0},{opacity:1}], fade));
+  /* la 2 se desvanece cuando el logo ya ha llegado: debajo aparece la 1 */
+  A.querySelector('.vuelta').animate([{opacity:1},{opacity:0}],
+     {duration:500, delay:1700, easing:'ease-in-out', fill:'both'});
+  setTimeout(()=>B.querySelectorAll('.wc-logo,.wc-tag').forEach(n=>n.style.visibility=''), 1750);
+  setTimeout(()=>{
+    [A,B].forEach(c=>c.getAnimations({subtree:true}).forEach(x=>x.cancel()));
+    A.querySelector('.vuelta').style.animation='';
+    B.querySelector('.vuelta').style.animation='';
+    A.querySelectorAll('.clon-wc').forEach(n=>n.remove());
+    A.querySelectorAll('.wc-logo,.wc-tag').forEach(n=>n.style.visibility='');
+    B.querySelectorAll('.wc-logo,.wc-tag').forEach(n=>n.style.visibility='');
+    fin();
+  }, 2300);
+}
+/* ---- de la 1 a la 2: título fuera, evento abajo, libro desde abajo ---- */
+function transTitulo(de, a, fin){
+  const A=celdas[de], B=celdas[a];
+  limpia();
+  A.classList.add('sale'); B.classList.add('entra');
+  A.querySelector('.vuelta').style.animation='none';
+  B.querySelector('.vuelta').style.animation='none';
+  /* B cubre a A: se funde desde transparente para que el título de A se vea desvanecerse */
+  B.querySelector('.vuelta').animate([{opacity:0},{opacity:1}],{duration:700,easing:'ease-in-out',fill:'both'});
+  const k = (A.querySelector('.tablero').getBoundingClientRect().width/1920) || 1;   // escala real da diapositiva
+  const fade = {duration:650, easing:'ease-out', fill:'forwards'};
+  const tit=A.querySelector('.portada-tit'), aut=A.querySelector('.portada-autora');
+  [tit,aut].forEach(el=>el && el.animate([{opacity:1},{opacity:0}], fade));
+  /* el logo y el hashtag viajan desde su sitio en la 1 hasta su sitio en la 2;
+     el texto del evento (nombre y lugar) se funde */
+  const dest = (el)=>{ const r=el.getBoundingClientRect(); return r; };
+  function viaja(el, destino, retraso){
+    if(!el || !destino) return;
+    const a=el.getBoundingClientRect(), b=destino.getBoundingClientRect();
+    const dx=((b.left+b.width/2)-(a.left+a.width/2))/k;
+    const dy=((b.top+b.height/2)-(a.top+a.height/2))/k;
+    el.animate([{translate:'0px 0px'},{translate:`${dx}px ${dy}px`}],
+               {duration:900, delay:retraso, easing:'cubic-bezier(.45,0,.2,1)', fill:'forwards'});
+  }
+  const bloqueEv=A.querySelector('.evento');
+  if(bloqueEv) bloqueEv.animate([{opacity:1},{opacity:0}], {duration:500, easing:'ease-out', fill:'forwards'});
+  /* el logo y el hashtag de WordCamp se copian dentro de la 2 (encima de su fondo)
+     y viajan hasta su sitio; los originales de la 2 aparecen al llegar */
+  const tab=B.querySelector('.tablero');
+  const tr=tab.getBoundingClientRect();
+  const wcLogo=B.querySelector('.wc-logo'), wcTag=B.querySelector('.wc-tag');
+  function clona(origen, destino, retraso){
+    if(!origen || !destino) return;
+    const a=origen.getBoundingClientRect(), b=destino.getBoundingClientRect();
+    const c=origen.cloneNode(true);
+    c.classList.add('clon-wc');
+    Object.assign(c.style,{position:'absolute', margin:'0', right:'auto', bottom:'auto',
+      left:((a.left-tr.left)/k)+'px', top:((a.top-tr.top)/k)+'px',
+      width:(a.width/k)+'px', height:(a.height/k)+'px', transform:'none', zIndex:'50'});
+    tab.appendChild(c);
+    origen.style.visibility='hidden';
+    /* la copia pasa del tamaño de la 1 al de la 2 (el logo de la 2 es más pequeño) */
+    c.style.transformOrigin='0 0';
+    c.animate([{translate:'0px 0px', scale:'1'},
+               {translate:`${(b.left-a.left)/k}px ${(b.top-a.top)/k}px`, scale:`${b.width/a.width}`}],
+              {duration:900, delay:retraso, easing:'cubic-bezier(.45,0,.2,1)', fill:'forwards'});
+  }
+  clona(A.querySelector('.wc-logo'), wcLogo, 150);
+  clona(A.querySelector('.wc-tag'), wcTag, 150);
+  /* primero el logo y el hashtag bajan a su sitio; luego entra el libro por la derecha; los de la 2 aparecen al llegar las copias */
+  [wcLogo, wcTag].forEach(el=>{ if(el) el.animate([{opacity:0},{opacity:1}],
+       {duration:250, delay:1050, easing:'linear', fill:'both'}); });
+  const libro=B.querySelector('.libro-obj');
+  if(libro){
+    libro.animate([{transform:'translateX(1100px)',opacity:0},
+                   {transform:'translateX(0px)',opacity:1}],
+                  {duration:900, delay:950, easing:'cubic-bezier(.2,.7,.2,1)', fill:'both'});
+  }
+  setTimeout(()=>{
+    [A,B].forEach(c=>c.getAnimations({subtree:true}).forEach(x=>x.cancel()));
+    A.querySelector('.vuelta').style.animation='';
+    B.querySelector('.vuelta').style.animation='';
+    B.querySelectorAll('.clon-wc').forEach(n=>n.remove());
+    A.querySelectorAll('.wc-logo,.wc-tag').forEach(n=>n.style.visibility='');
+    fin();
+  }, 1400);
+}
+function limpia(){ celdas.forEach(c=>c.classList.remove('sale','entra')); }
+function pinta(j){
+  if(!Number.isInteger(j)) j=i;                       // red: nunca sin diapositiva
+  j=Math.max(0,Math.min(celdas.length-1,j));
+  i=j; celdas.forEach((c,k)=>c.classList.toggle('activa',k===j));
+  refresca();
+  if(j===celdas.length-1) animaCierre();
+  if(typeof colocando!=='undefined' && colocando){ sel=null; marcaMovibles(); }
+}
+function refresca(){
+  minis.forEach((m,k)=>m.setAttribute('aria-current', k===i));
+  minis[i]?.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+  const d=D[i];
+  document.getElementById('cab').textContent = `Diapositiva ${d.n} de ${D.length} · ${d.rot}`;
+  document.getElementById('nota').innerHTML =
+    d.nota.replace(/&/g,'&amp;').replace(/</g,'&lt;')
+          .replace(/\[([^\]]+)\]/g,'<span class="marca">[$1]</span>');
+  const s=D[i+1];
+  document.getElementById('sig').innerHTML = s
+    ? 'Sigue<b>'+s.rot+'</b>' : 'Última diapositiva';
+  document.getElementById('barra').firstElementChild.style.width=((i+1)/D.length*100)+'%';
+  reloj();
+}
+
+/* --- cronómetro --- */
+function mmss(s){ s=Math.max(0,Math.round(s)); return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+function reloj(){
+  if(corriendo) transcurrido=(Date.now()-t0)/1000;
+  document.getElementById('grande').textContent=mmss(transcurrido);
+  const meta=D[i].acum, dif=transcurrido-meta;
+  const cls = !corriendo? '' : dif<-25? 'bien' : dif<25? 'justo' : 'tarde';
+  const txt = !corriendo
+    ? 'Cronómetro parado · pulsa S para empezar'
+    : `Deberías ir por <b>${mmss(meta)}</b> · ${dif>0?'+':'−'}${mmss(Math.abs(dif))}`;
+  const e=document.getElementById('estado');
+  e.className=cls; e.innerHTML=txt;
+  document.getElementById('grande').className=cls;
+}
+setInterval(reloj, 500);
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MODO COLOCAR (tecla M): mover y redimensionar las ilustraciones
+   con el ratón. Se guarda solo en el navegador; con «Copiar» sacas
+   un bloque para pegarlo aquí abajo y que viaje con el fichero.
+   ═══════════════════════════════════════════════════════════════ */
+/* Pega aquí lo que te dé el botón «Copiar axustes» para fijarlos: */
+const AXUSTES_FIJOS = {};
+
+// Firma da estrutura do mazo (nº de diapositivas + rótulos). Os axustes de
+// posición gardados no navegador van indexados por número de diapositiva;
+// se o mazo cambia de estrutura (borrar/fusionar diapositivas), eses índices
+// xa non corresponden ás mesmas imaxes e hai que descartar o gardado vello
+// en vez de aplicalo á diapositiva equivocada (imaxes detrás do texto,
+// comprimidas, etc.).
+const DECK_SIG = 'v2|' + D.length + '|' + D.map(d => d.rot).join('|');
+
+let AX = {};
+try{
+  if (localStorage.getItem('axustes_sig') === DECK_SIG) {
+    AX = JSON.parse(localStorage.getItem('axustes')||'{}') || {};
+  } else {
+    AX = {};
+    localStorage.removeItem('axustes');
+    localStorage.setItem('axustes_sig', DECK_SIG);
+  }
+}catch(e){ AX = {}; }
+AX = Object.assign({}, AXUSTES_FIJOS, AX);
+
+const movibles = c => [...c.querySelectorAll('.ilus,.det')];
+function claveEl(el){ return el.classList.contains('det') ? 'det' : 'ilus'; }
+
+function aplicaAx(){                      // vuelca los ajustes guardados al DOM
+  celdas.forEach(c=>movibles(c).forEach(el=>{   // guarda la posición de fábrica
+    if(el.dataset.base==null) el.dataset.base = el.getAttribute('style')||'';
+  }));
+  celdas.forEach((c,k)=>{
+    const a = AX[k]; if(!a) return;
+    movibles(c).forEach(el=>{
+      const v = a[claveEl(el)]; if(!v) return;
+      if(v.l!=null) el.style.left   = v.l+'px';
+      if(v.t!=null) el.style.top    = v.t+'px';
+      if(v.w!=null) el.style.width  = v.w+'px';
+      if(v.h!=null) el.style.height = v.h+'px';
+    });
+  });
+}
+function guardaAx(){
+  try{ localStorage.setItem('axustes', JSON.stringify(AX)); }catch(e){}
+}
+function anotaAx(k, el){
+  const cl = claveEl(el);
+  AX[k] = AX[k] || {};
+  AX[k][cl] = { l: Math.round(parseFloat(el.style.left)||0),
+                t: Math.round(parseFloat(el.style.top)||0),
+                w: Math.round(el.getBoundingClientRect().width/escalaHoja()),
+                h: Math.round(el.getBoundingClientRect().height/escalaHoja()) };
+  guardaAx(); pintaCoord(el);
+}
+function escalaHoja(){                    // px de pantalla por cada px de las 1920
+  const h = celdas[i].querySelector('.hoja');
+  return h ? h.getBoundingClientRect().width/1920 : 1;
+}
+
+let colocando=false, sel=null;
+function colocar(){
+  colocando = !colocando;
+  app.classList.toggle('colocando', colocando);
+  if(!colocando){ sel=null; document.querySelectorAll('.elegido')
+                    .forEach(e=>e.classList.remove('elegido'));
+                  document.getElementById('asa').hidden = true; }
+  marcaMovibles();
+  document.getElementById('barra-col').hidden = !colocando;
+}
+function marcaMovibles(){
+  celdas.forEach(c=>movibles(c).forEach(el=>el.classList.toggle('movible', colocando)));
+  const m = movibles(celdas[i]);
+  if(colocando && m.length && !sel) elige(m[0]);
+}
+function elige(el){
+  document.querySelectorAll('.elegido').forEach(e=>e.classList.remove('elegido'));
+  sel = el; if(el) el.classList.add('elegido');
+  pintaCoord(el);
+}
+function ponAsa(el){
+  const a = document.getElementById('asa');
+  if(!a) return;
+  if(!el || !colocando){ a.hidden = true; return; }
+  const r = el.getBoundingClientRect();
+  a.style.left = r.right + 'px';
+  a.style.top  = r.bottom + 'px';
+  a.hidden = false;
+}
+function pintaCoord(el){
+  ponAsa(el);
+  const c = document.getElementById('coord');
+  if(!c) return;
+  if(!el){ c.textContent='—'; return; }
+  const k = escalaHoja(), r = el.getBoundingClientRect();
+  c.textContent = `${claveEl(el)}  x ${Math.round(parseFloat(el.style.left)||0)}`
+    + `  y ${Math.round(parseFloat(el.style.top)||0)}`
+    + `  ancho ${Math.round(r.width/k)}  alto ${Math.round(r.height/k)}`;
+}
+
+/* --- arrastrar y redimensionar --- */
+escena.addEventListener('pointerdown', e=>{
+  if(!colocando) return;
+  const el = e.target.closest('.ilus,.det');
+  if(!el || !celdas[i].contains(el)) return;
+  e.preventDefault(); elige(el);
+  const k = escalaHoja(), r = el.getBoundingClientRect();
+  // esquina inferior derecha (24 px) = redimensionar; el resto = mover
+  const esquina = (e.clientX > r.right-26 && e.clientY > r.bottom-26);
+  const x0=e.clientX, y0=e.clientY;
+  const l0=parseFloat(el.style.left)||0, t0=parseFloat(el.style.top)||0;
+  const w0=r.width/k, h0=r.height/k, prop=w0/h0;
+  const mover = ev=>{
+    const dx=(ev.clientX-x0)/k, dy=(ev.clientY-y0)/k;
+    if(esquina){
+      let w = Math.max(60, w0+dx);
+      if(!ev.shiftKey){ el.style.width=w+'px'; el.style.height=(w/prop)+'px'; }
+      else { el.style.width=w+'px'; el.style.height=Math.max(40,h0+dy)+'px'; }
+    }else{
+      el.style.left=Math.round(l0+dx)+'px';
+      el.style.top =Math.round(t0+dy)+'px';
+    }
+    pintaCoord(el);
+  };
+  const soltar = ()=>{ removeEventListener('pointermove',mover);
+                       removeEventListener('pointerup',soltar);
+                       anotaAx(i, el); };
+  addEventListener('pointermove', mover);
+  addEventListener('pointerup', soltar, {once:true});
+}, true);
+
+function nudge(dx,dy){
+  if(!sel) return;
+  sel.style.left = ((parseFloat(sel.style.left)||0)+dx)+'px';
+  sel.style.top  = ((parseFloat(sel.style.top )||0)+dy)+'px';
+  anotaAx(i, sel);
+}
+function reponAx(){            // devuelve esta diapositiva a la posición de fábrica
+  const m = movibles(celdas[i]);
+  m.forEach(el=>el.setAttribute('style', el.dataset.base||''));
+  delete AX[i]; guardaAx();
+  marcaMovibles(); elige(m[0]);
+  aviso('Diapositiva ' + (i+1) + ' devolta á súa posición orixinal.');
+}
+function copiaAx(){
+  const txt = 'const AXUSTES_FIJOS = ' + JSON.stringify(AX) + ';';
+  // 2026-10-04: nin o portapapeles nin o prompt() son fiables en todos os
+  // contextos (file://, webviews, etc.), así que a vía principal agora é
+  // descargar un ficheiro .txt cos axustes -- iso funciona practicamente en
+  // calquera sitio. Os valores van despois a image_style en slides.ini.
+  let descargou = false;
+  try{
+    const blob = new Blob([txt], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'axustes-erase-unha-vez.txt';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 4000);
+    descargou = true;
+  }catch(e){ descargou = false; }
+
+  if(descargou){
+    aviso('Descargado axustes-erase-unha-vez.txt. Copia os valores a image_style en slides.ini.');
+  }else{
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(
+          ()=>aviso('Copiado. Copia os valores a image_style en slides.ini.'),
+          ()=>{ prompt('Copia isto a slides.ini:', txt); });
+      }else{
+        prompt('Copia isto a slides.ini:', txt);
+      }
+    }catch(e2){
+      prompt('Copia isto a slides.ini:', txt);
+    }
+  }
+}
+function aviso(t){
+  const a=document.getElementById('aviso-col'); if(!a) return;
+  a.textContent=t; a.hidden=false; setTimeout(()=>a.hidden=true, 3200);
+}
+aplicaAx();
+addEventListener('resize', ()=>{ if(colocando && sel) ponAsa(sel); });
+
+/* --- modos --- */
+function modo(){ app.classList.toggle('ensayo'); requestAnimationFrame(ajusta); }
+function rejilla(){ app.classList.toggle('rejilla'); requestAnimationFrame(()=>{ajusta();
+  if(app.classList.contains('rejilla')) celdas[i].scrollIntoView({block:'center'});}); }
+function crono(){
+  if(corriendo){ corriendo=false; }
+  else { t0=Date.now()-transcurrido*1000; corriendo=true; }
+  document.getElementById('bCrono').setAttribute('aria-pressed', corriendo);
+  reloj();
+}
+function reinicia(){ corriendo=false; transcurrido=0; t0=null;
+  document.getElementById('bCrono').setAttribute('aria-pressed', false); reloj(); }
+
+addEventListener('keydown', e=>{
+  if(e.target.tagName==='INPUT') return;
+  const k=e.key;
+  if(colocando && (k.startsWith('Arrow'))){         // en modo colocar, mover fino
+    e.preventDefault();
+    const paso = e.shiftKey ? 10 : 1;
+    if(k==='ArrowRight') nudge(paso,0); else if(k==='ArrowLeft') nudge(-paso,0);
+    else if(k==='ArrowDown') nudge(0,paso); else nudge(0,-paso);
+    return;
+  }
+  if(colocando && (k==='Tab')){ e.preventDefault();
+    const m=movibles(celdas[i]); if(m.length) elige(m[(m.indexOf(sel)+1)%m.length]); return; }
+  if(k==='ArrowRight'||k==='ArrowDown'||k===' '||k==='PageDown'){e.preventDefault();ve(i+1,1);}
+  else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();ve(i-1,-1);}
+  else if(k==='Home'){pinta(0);} else if(k==='End'){pinta(D.length-1);}
+  else if(k==='e'||k==='E'){modo();}
+  else if(k==='g'||k==='G'){rejilla();}
+  else if(k==='s'||k==='S'){crono();}
+  else if(k==='r'||k==='R'){reinicia();}
+  else if(k==='f'||k==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(k==='v'||k==='V'){EVENTO.activo=!EVENTO.activo;pintaEvento();guarda();}
+  else if(k==='m'||k==='M'){colocar();}
+  else if(k==='?'||k==='h'||k==='H'){document.getElementById('ayuda').classList.toggle('on');}
+  else if(k==='Escape'){ if(colocando){ colocar(); return; }
+      document.getElementById('ayuda').classList.remove('on');
+      app.classList.remove('rejilla'); requestAnimationFrame(ajusta);}
+});
+/* 2026-09-22: ao chegar a ultima paxina (contracuberta), a ilustracion do
+   libro pechado aparece pouco a pouco en vez de estar xa alli de golpe, e o
+   logo + hashtag do evento esvaecen a vez (xa non fan falta, o protagonismo
+   e para o libro) */
+function animaCierre(){
+  /* 2026-10-03: se quita a animacion de fade (daba un "flashazo" e facia
+     desaparecer o logo da WordCamp). Agora a contraportada amosase enteira
+     e quieta: libro + logo + #WCGalicia, sen trucos de opacidade. */
+}
+escena.addEventListener('click', e=>{
+  if(colocando) return;
+  if(app.classList.contains('rejilla')){
+    const c=e.target.closest('.marco:not(#libro)'); if(!c) return;
+    const j=+c.dataset.i;
+    if(Number.isInteger(j)){ rejilla(); pinta(j); }
+    return;
+  }
+  const r=escena.getBoundingClientRect();
+  if(e.clientX - r.left < r.width/2) ve(i-1,-1); else ve(i+1,1);
+});
+minis.forEach(m=>m.addEventListener('click',()=>{ const j=+m.dataset.i;
+   if(app.classList.contains('rejilla')) pinta(j); else ve(j, j>i?1:-1); }));
+document.getElementById('bModo').onclick=modo;
+document.getElementById('bRej').onclick=rejilla;
+document.getElementById('bCrono').onclick=crono;
+document.getElementById('bCero').onclick=reinicia;
+document.getElementById('evActivo').onchange=e=>{EVENTO.activo=e.target.checked;pintaEvento();guarda();};
+document.getElementById('evNombre').oninput=e=>{EVENTO.nombre=e.target.value;pintaEvento();guarda();};
+document.getElementById('evLugar').oninput =e=>{EVENTO.lugar =e.target.value;pintaEvento();guarda();};
+document.getElementById('bAyuda').onclick=()=>document.getElementById('ayuda').classList.toggle('on');
+document.getElementById('ayuda').onclick=e=>e.currentTarget.classList.remove('on');
+
+/* ---- el nombre del evento, en todas las copias de la portada ---- */
+function guarda(){ try{ localStorage.setItem('evento', JSON.stringify(EVENTO)); }catch(e){} }
+try{ const g=JSON.parse(localStorage.getItem('evento')||'null');
+     if(g && typeof g==='object') Object.assign(EVENTO,g); }catch(e){}
+function pintaEvento(){
+  document.querySelectorAll('.ev-nombre,.fr-nombre').forEach(e=>e.textContent=EVENTO.nombre);
+  document.querySelectorAll('.ev-lugar,.fr-lugar').forEach(e=>e.textContent=EVENTO.lugar);
+  document.querySelectorAll('.ev-logo').forEach(img=>{
+    const caja = img.closest('.ev-marca');
+    if(!EVENTO.logo){ img.hidden=true; caja.classList.add('sen-logo'); return; }
+    img.onload  = ()=>{ img.hidden=false; caja.classList.remove('sen-logo'); };
+    img.onerror = ()=>{ img.hidden=true;  caja.classList.add('sen-logo'); };
+    if(img.getAttribute('src')!==EVENTO.logo) img.src=EVENTO.logo;
+  });
+  document.querySelectorAll('.tablero').forEach(e=>e.classList.toggle('sin-evento',!EVENTO.activo));
+  const c=document.getElementById('evActivo'); if(c) c.checked=EVENTO.activo;
+  const n=document.getElementById('evNombre'); if(n && n.value!==EVENTO.nombre) n.value=EVENTO.nombre;
+  const l=document.getElementById('evLugar');  if(l && l.value!==EVENTO.lugar)  l.value=EVENTO.lugar;
+}
+pintaEvento();
+
+celdas.forEach((c,k)=>c.dataset.n=k+1);
+/* cada miniatura lleva una copia real de su diapositiva */
+colocaPie();
+minis.forEach((m,k)=>{
+  m.querySelector('.lienzo').appendChild(celdas[k].querySelector('.tablero').cloneNode(true));
+});
+document.fonts?.ready.then(()=>{ colocaPie(); ajusta(); });
+pinta(0); ajusta(); setTimeout(ajusta,300);
+</script>
+</body></html>

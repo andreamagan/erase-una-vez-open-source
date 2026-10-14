@@ -41,8 +41,10 @@ anyone can find and use the project wherever they're from.
 ├── illustrations/       → the artwork, without text
 │   ├── scenes/          → book illustrations, by page
 │   ├── characters/      → character sheets
+│   ├── slides/          → artwork used in the talk's slides
 │   └── share/           → ready-to-share images, with text
 ├── talk/                → the talk, one folder per edition
+│   ├── deck/            → slide generator (script → offline HTML)
 │   └── wordcamp-galicia-2026/
 ├── site/                → the website (GitHub Pages)
 └── .github/             → website deployment

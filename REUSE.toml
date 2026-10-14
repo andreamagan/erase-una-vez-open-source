@@ -27,6 +27,9 @@ path = [
   "site/**/*.css",
   "site/**/*.js",
   ".github/**",
+  "talk/deck/*.py",
+  "talk/deck/*.html",
+  "talk/deck/layouts/**",
   ".pre-commit-config.yaml",
 ]
 SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
@@ -56,3 +59,30 @@ path = [
 SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
 SPDX-FileContributor = ["2026 Mónica Pérez Sueiro (proofreader)"]
 SPDX-License-Identifier = "CC-BY-NC-4.0"
+
+# Tipografías incrustadas en la presentación
+[[annotations]]
+path = "talk/deck/fonts/**"
+SPDX-FileCopyrightText = [
+  "2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)",
+  "2012 Patrick Wagesreiter",
+  "2020 The Open Sans Project Authors (https://github.com/googlefonts/opensans)",
+  "2010 Kimberly Geswein",
+]
+SPDX-License-Identifier = "OFL-1.1"
+
+# Marca de WordCamp Galicia 2026 (no es de este proyecto)
+[[annotations]]
+path = [
+  "talk/wordcamp-galicia-2026/event/wordcamp-galicia-2026-logo.png",
+  "talk/wordcamp-galicia-2026/event/wordcamp-galicia-crab.png",
+  "talk/wordcamp-galicia-2026/event/a-coruna-skyline.png",
+]
+SPDX-FileCopyrightText = "2026 WordCamp Galicia organisers / WordPress Foundation"
+SPDX-License-Identifier = "LicenseRef-WordCamp-Galicia-branding"
+
+# El QR solo contiene un enlace
+[[annotations]]
+path = "talk/wordcamp-galicia-2026/event/qr-repo.png"
+SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
+SPDX-License-Identifier = "CC0-1.0"
