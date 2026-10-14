@@ -1,0 +1,53 @@
+.gitignore
+  s_cb98a6b9e3372b::t_fdd6c48a040d41 43-45
+LICENSES/LicenseRef-WordCamp-Galicia-branding.txt
+  s_cb98a6b9e3372b::t_9f5614eb7fd35a 1-11
+LICENSES/OFL-1.1.txt
+  s_cb98a6b9e3372b::t_bcb6bf0f46df55 1-43
+README.md
+  s_cb98a6b9e3372b::t_5d1a7685f07d1b 44,47
+REUSE.toml
+  s_cb98a6b9e3372b::t_d91a74c1e5d9a3 30-32,62-88
+illustrations/README.md
+  s_cb98a6b9e3372b::t_9caa9ee0511b04 9
+talk/deck/README.md
+  s_cb98a6b9e3372b::t_e693bd3083da87 1-47
+talk/deck/build-deck.py
+  s_cb98a6b9e3372b::t_2479008f9fa102 1-144
+talk/deck/fondo.html
+  s_cb98a6b9e3372b::t_d804483cb99697 1
+talk/deck/layouts/_pie.html
+  s_cb98a6b9e3372b::t_b717c201269b82 1
+talk/deck/layouts/contracuberta.html
+  s_cb98a6b9e3372b::t_c0262d6745f69f 1-13
+talk/deck/layouts/cuberta.html
+  s_cb98a6b9e3372b::t_b558bbbfbf6c3b 1-28
+talk/deck/layouts/dedicatoria.html
+  s_cb98a6b9e3372b::t_bf39b30a0fd543 1-8
+talk/deck/layouts/paxina.html
+  s_cb98a6b9e3372b::t_820ac4e35e6cfa 1-5
+talk/deck/layouts/peche.html
+  s_cb98a6b9e3372b::t_b6340c11d62d94 1-5
+talk/deck/layouts/portada.html
+  s_cb98a6b9e3372b::t_07c8c6be31101f 1
+talk/deck/template.html
+  s_cb98a6b9e3372b::t_67cad5795366bf 1-1201
+talk/wordcamp-galicia-2026/slides.ini
+  s_cb98a6b9e3372b::t_320ae5db4d58ff 1-258
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b33942dfff8c4c162835b9ed3a20e7eb96f7c939",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
