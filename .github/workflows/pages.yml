@@ -26,11 +26,13 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
       - name: Configure GitHub Pages
+        id: pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
       - name: Prepare the site for its URL
-        run: python3 .github/scripts/prepare-pages.py site _site "$GITHUB_REPOSITORY"
+        # base_url is https://<user>.github.io/<repo> or, with a custom domain, https://<domain>
+        run: python3 .github/scripts/prepare-pages.py site _site "${{ steps.pages.outputs.base_url }}"
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
