@@ -1,0 +1,21 @@
+talk/README.md
+  s_cb98a6b9e3372b::t_d18f3bfcdb2145 25-30
+talk/sorteo.py
+  s_cb98a6b9e3372b::t_3b37cd6655757d 1-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "26db0f44b9292483895983599e2a00edc222aa68",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
