@@ -14,7 +14,7 @@ the illustrations and the website.
 - **The book**: preview edition (v0.1) in Galician, 36 pages. A small
   test print exists — not for sale, no ISBN — to share at the talk and
   gather feedback before a first proper edition. You can
-  [flip through it online](https://andreamagan.github.io/erase-una-vez-open-source/conto/).
+  [flip through it online](https://eraseunavezopensource.org/conto/).
   A Spanish translation is open to contributors.
 - **The talk**: WordCamp Galicia, 16–18 October 2026, A Coruña. Given
   in Galician, 10 minutes.

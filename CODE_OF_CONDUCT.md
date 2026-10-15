@@ -10,8 +10,8 @@ how to behave around it. These are ours.
 - **Every hand counts.** A typo fix is as welcome as a full
   translation. Nobody needs to know everything.
 - **Disagree about the work, never about the person.**
-- **Ask before touching what isn't yours.** If someone's already on an
-  issue (🔵 *in progress*), talk to them first.
+- **Ask before touching what isn't yours.** If an issue is already
+  assigned to someone, talk to them first.
 - **Mind the little ones.** This is a story for children, too: keep
   everything you post suitable for all ages.
 
@@ -21,7 +21,7 @@ private information, or deliberately making others feel unwelcome.
 
 ## If something goes wrong
 
-Write to **CONTACT_EMAIL**. Reports are read by the maintainer only and
+Write to **hola@eraseunavezopensource.org**. Reports are read by the maintainer only and
 kept confidential. The maintainer may remove comments, issues or PRs,
 or block people who don't respect these signs.
 

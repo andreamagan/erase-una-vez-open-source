@@ -61,16 +61,15 @@ issue to discuss it before writing anything.
 
 ## How issues are sorted
 
-Same as Norma sorts the board in the story itself, issues carry one of
-three labels — in English here, and *listas para empezar / necesitan
-máis mans / xa en marcha* in the Galician story:
+Same as Norma sorts the board in the story itself, issues live on
+[Norma's board](https://github.com/users/andreamagan/projects/1/views/1) in the
+same columns: *Ready to start → Needs more hands → In progress → Done*
+(*listas para empezar / necesitan máis mans / xa en marcha* in the
+Galician story). Start with *Ready to start* if it's your first
+contribution.
 
-- 🟢 **ready to start** — well defined, no extra context needed, good
-  for a first contribution.
-- 🟡 **needs more hands** — more work or more judgment involved, but
-  open to whoever wants to pick it up.
-- 🔵 **in progress** — someone's already on it; comment before starting
-  in parallel.
+To take an issue, comment on it and it gets assigned to you; if it
+already has someone assigned, talk to them before starting in parallel.
 
 ## Before opening a PR
 
