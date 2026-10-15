@@ -1,0 +1,31 @@
+.gitignore
+  s_cb98a6b9e3372b::t_80f733ee559768 1,8-10,12,16-17
+LICENSES/LicenseRef-WordCamp-Galicia-branding.txt
+  s_cb98a6b9e3372b::t_33d4502ba211f0 4
+REUSE.toml
+  s_cb98a6b9e3372b::t_01f5d9d7258182 5-6,9,16-17,23,30,39,48,50-51,57,66,68,77,86
+talk/deck/README.md
+  s_cb98a6b9e3372b::t_5cac78e16b519a 19-21
+talk/deck/build-deck.py
+  s_cb98a6b9e3372b::t_a7393826e8ccfa 54-58,61-62,85-86,97,118,133-134,142
+talk/deck/layouts/_pie.html
+  s_cb98a6b9e3372b::t_1fa855cc1d3af8 1
+talk/deck/template.html
+  s_cb98a6b9e3372b::t_77593935602211 105-107,149,248,309,619
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ea05b2db90dbb0b525fa70b4c95249b3a2d71826",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
