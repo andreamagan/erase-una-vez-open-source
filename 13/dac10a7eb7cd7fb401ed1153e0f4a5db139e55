@@ -1,0 +1,19 @@
+REUSE.toml
+  s_cb98a6b9e3372b::t_e7907df7de5faa 74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "13dac10a7eb7cd7fb401ed1153e0f4a5db139e55",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
