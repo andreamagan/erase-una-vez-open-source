@@ -65,7 +65,9 @@ the Open Source Definition doesn't allow restricting commercial use, so
 a CC BY-NC work isn't open source. That's deliberate: anyone can read,
 tell, translate and adapt this story for free, but commercial print
 runs go through the author. The preview print calls the book "open
-source": that's on the errata list for the next version.
+source": that's on the
+[errata list](https://github.com/andreamagan/erase-una-vez-open-source/issues?q=is%3Aissue+errata)
+for the next version.
 
 The licenses explained *inside* the story (MIT, GPL, Apache) are part
 of the narrative, not the license of this work.

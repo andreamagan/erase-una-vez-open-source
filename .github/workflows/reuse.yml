@@ -1,0 +1,18 @@
+name: REUSE compliance
+
+# Every file needs a license and copyright notice (see REUSE.toml).
+# Runs on pull requests too, so outside contributions are checked.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  reuse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: fsfe/reuse-action@v5
