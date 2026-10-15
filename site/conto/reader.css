@@ -28,14 +28,15 @@
 .zoom-scroll{max-height:calc(96dvh - 65px);overflow:auto;overscroll-behavior:contain}
 .zoom-scroll img{display:block;width:max(900px,calc(96vw - 36px));height:auto;max-width:none;margin:auto}
 @media(max-width:720px){
-  .reader-shell{padding-top:50px;padding-bottom:70px}
-  .reader-heading{display:block;margin-bottom:35px}
-  .reader-heading h1{font-size:clamp(49px,11vw,72px);margin-bottom:23px}
-  .reader-heading>p{max-width:480px}
+  .reader-shell{padding-top:20px;padding-bottom:30px}
+  .reader-heading{margin-bottom:6px;gap:4px 12px}
+  .reader-intro{font-size:14px}
   .reader-status{font-size:15px}
   .reader-book{display:block}
   .reader-page+.reader-page{border:0}
-  .reader-hint{margin-bottom:40px}
+  .reader-controls{margin-top:20px;max-width:280px}
+  .reader-controls button{font-size:17px;padding:6px 0}
+  .reader-hint{font-size:14px;margin:4px 0 20px}
 }
 .reader-page.is-blank{aspect-ratio:1/1}
 .reader-page.is-blank button,.reader-page[hidden]{display:none}
@@ -80,7 +81,8 @@ html.reading-full{overflow:hidden}
 .reader-stage.is-full{position:fixed;inset:0;z-index:1000;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 16px}
 .reader-stage.is-full .reader-book{width:min(96vw,calc((100dvh - 120px) * 2 + 32px));max-width:none;margin:0}
 .reader-stage.is-full .reader-book.is-single{width:min(94vw,calc(100dvh - 120px))}
-.reader-stage.is-full .reader-controls{margin-top:14px}
+.reader-stage.is-full .reader-controls{margin-top:14px;max-width:320px}
+.reader-stage.is-full .reader-controls button{font-size:18px}
 .reader-stage.is-full .full-close{display:block;position:absolute;top:12px;right:18px;border:0;background:none;color:var(--ink);font-family:var(--serif);font-size:22px;cursor:pointer}
 .reader-stage.is-full .full-close:hover{color:var(--coral)}
 
@@ -120,9 +122,13 @@ html.reading-full{overflow:hidden}
 @media(max-width:720px){
   .reader-book{padding:0 0 6px}
   #left-page{box-shadow:1px 1px 0 #fff,2px 2px 0 #d8e1e8,3px 3px 0 #fff,4px 4px 0 #cbd6df,6px 14px 22px -10px #09528e40}
+  /* No conto non hai menú despregable: mostramos todas as ligazóns da cabeceira */
+  .site-header:not(.has-toggle) nav a:not(.nav-read){display:inline}
 }
 
 /* Sen título grande enriba do libro: queda só para lectores de pantalla */
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.reader-heading{align-items:start;margin-bottom:10px}
-.reader-heading .eyebrow{margin-bottom:0}
+.reader-heading{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;margin-bottom:14px}
+.reader-heading .eyebrow{margin-bottom:0;flex:none}
+.reader-intro{margin:0;font-size:16px;line-height:1.45;color:var(--muted)}
+.reader-heading .full-toggle{margin-left:auto;flex:none}

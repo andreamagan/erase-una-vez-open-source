@@ -8,7 +8,9 @@
   <title>O conto ilustrado · Érase unha vez un proxecto Open Source</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/hand.css">
+  <link rel="stylesheet" href="/axustes.css">
   <link rel="stylesheet" href="/conto/reader.css">
+  <link rel="preload" href="/assets/fonts/ContoSans-Regular.woff" as="font" type="font/woff" crossorigin>
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -16,14 +18,15 @@
   <a class="skip" href="#reader">Ir ao conto</a>
   <header class="site-header wrap">
     <a class="wordmark" href="/" aria-label="Érase unha vez un proxecto Open Source, inicio"><span class="mark"><svg class="ct-marks" viewBox="0 0 40 50" aria-hidden="true" focusable="false"><g><line x1="32" y1="8" x2="14" y2="2"/><line x1="28" y1="25" x2="4" y2="25"/><line x1="32" y1="42" x2="14" y2="48"/></g></svg>Érase unha vez…<svg class="ct-marks ct-flip" viewBox="0 0 40 50" aria-hidden="true" focusable="false"><g><line x1="32" y1="8" x2="14" y2="2"/><line x1="28" y1="25" x2="4" y2="25"/><line x1="32" y1="42" x2="14" y2="48"/></g></svg></span><span class="mark-tail">un proxecto Open Source</span></a>
-    <nav aria-label="Navegación"><a href="/">Volver á web</a><a class="nav-read" href="/conto/texto.html">Versión só texto <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Navegación"><a href="/">Á portada</a></nav>
   </header>
   <main id="reader" class="reader-shell wrap">
     <div class="reader-heading">
-      <div><p class="eyebrow">O conto · galego</p><h1 class="visually-hidden">Érase unha vez un proxecto Open Source</h1></div>
-      <p>Unha caixa de cartón, unha gata chamada Teky e un bosque enteiro. Follea as páxinas tal como aparecen no libro.</p>
+      <h1 class="visually-hidden">Érase unha vez un proxecto Open Source</h1>
+      <p class="eyebrow">O conto · galego</p>
+      <p class="reader-intro">Follea as páxinas tal como aparecen no libro.</p>
+      <button class="full-toggle" id="full" type="button" aria-pressed="false">Pantalla completa <span aria-hidden="true">⛶</span></button>
     </div>
-    <div class="reader-status"><button class="full-toggle" id="full" type="button" aria-pressed="false">Pantalla completa <span aria-hidden="true">⛶</span></button></div>
     <div class="reader-stage" id="reader-stage">
     <div class="reader-book" id="reader-book" role="group" aria-label="Páxinas do libro" aria-describedby="reader-access-note">
       <figure class="reader-page is-blank" id="left-page" aria-hidden="true"><button class="page-zoom" type="button" hidden><img width="1276" height="1276" alt=""></button></figure>
@@ -37,7 +40,7 @@
   </main>
   <footer class="site-footer"><div class="wrap">
     <div class="footer-flor" aria-hidden="true"><i></i><img src="/assets/decor/cenefa.png" alt=""><i></i></div>
-    <div class="footer-bottom"><span>© 2026 Andrea Magán Rey <img class="firma" src="/assets/decor/pegada.png" alt=""></span><span><a href="https://creativecommons.org/licenses/by-nc/4.0/deed.gl">Contido CC BY-NC 4.0</a> · <a href="https://github.com/andreamagan/erase-una-vez-open-source/blob/main/LICENSE-CODE">Código MIT</a> · <a href="https://github.com/andreamagan/erase-una-vez-open-source">Repositorio en GitHub</a></span></div>
+    <div class="footer-bottom"><span>© 2026 Andrea Magán Rey <img class="firma" src="/assets/decor/pegada.png" alt=""></span><span><a href="mailto:hola@eraseunavezopensource.org">hola@eraseunavezopensource.org</a> · <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.gl">Contido CC BY-NC 4.0</a> · <a href="https://github.com/andreamagan/erase-una-vez-open-source/blob/main/LICENSE-CODE">Código MIT</a> · <a href="https://github.com/andreamagan/erase-una-vez-open-source">Repositorio en GitHub</a></span></div>
   </div></footer>
   <script src="/conto/reader.js"></script>
 </body>
