@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@font-face{font-family:'Patrick Hand';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/PatrickHand-Regular.woff') format('woff')}
 
 :root{
   --paper:#ffffff;
@@ -89,7 +89,6 @@ h1{font-size:clamp(67px,7.5vw,121px);line-height:.94}
 .license-note{font-family:var(--serif);font-size:21px!important;line-height:1.35!important}
 .final-kicker{font-family:var(--serif);font-size:22px;font-style:normal}
 .footer-heading{font-size:38px}
-.credits{font-family:var(--serif);font-size:20px;line-height:1.6}
 .footer-bottom{font-size:14px}
 .footer-bottom a{font-size:17px}
 
@@ -121,17 +120,6 @@ h1{font-size:clamp(67px,7.5vw,121px);line-height:.94}
 /* Character names use one ink color. */
 .host p,.host p:first-letter{color:var(--ink)}
 
-/* The credits group people by the work they contributed. */
-.site-footer .footer-heading{font-size:clamp(35px,3.7vw,50px);line-height:1.1;margin-bottom:13px}
-.credits-intro{max-width:620px;font-size:16px;line-height:1.6;color:var(--muted);margin-bottom:44px}
-.credit-teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(40px,7vw,110px);max-width:1000px}
-.credit-team{border-top:1px solid var(--line);padding:24px 0 37px;min-width:0}
-.credit-team h3{font-family:var(--serif);font-size:clamp(25px,2.3vw,32px);font-weight:400;line-height:1.2;color:var(--ink);margin:0 0 7px}
-.credit-team .team-cast{font-family:var(--serif);font-size:16px;color:var(--muted);margin:0 0 26px}
-.team-member{font-family:var(--serif);font-size:23px;line-height:1.25;color:var(--ink);margin:0}
-.team-member span{display:block;font-family:var(--sans);font-size:14px;color:var(--muted);margin-top:3px}
-.team-waiting{font-size:15px;line-height:1.5;color:var(--muted);margin:0;max-width:300px}
-
 /* The reader keeps generous margins around the actual book typography. */
 .reader-heading h1{font-size:clamp(56px,6.4vw,92px)}
 .reader-page-content p{font-family:var(--sans);font-size:clamp(18px,1.52vw,23px);line-height:1.55}
@@ -158,9 +146,6 @@ h1{font-size:clamp(67px,7.5vw,121px);line-height:.94}
   .contribute-grid>a:nth-child(n),.contrib-static{padding-left:0}
   .reader-heading h1{font-size:clamp(55px,12vw,76px)}
   .reader-page-content p{font-size:19px}
-  .credit-teams{grid-template-columns:1fr}
-  .credit-team{padding:23px 0 32px}
-  .credits-intro{margin-bottom:32px}
   .site-footer .footer-bottom{margin-top:55px}
   .intro-lead{font-size:27px;margin-bottom:30px}
   .intro-flow p{font-size:16px}
@@ -262,26 +247,6 @@ body{color:var(--body-blue)}
  .hero h1{font-size:53px}
 }
 
-/* End credits read as one cast: character and author share the same type treatment. */
-.site-footer .footer-heading{background-image:none;width:auto;text-align:left;padding:0;margin:0 0 10px}
-.credits-intro{max-width:660px;font-size:19px;line-height:1.5;margin-bottom:54px;color:var(--body-blue)}
-.credit-teams{max-width:none;column-gap:clamp(45px,8vw,120px);row-gap:8px}
-.credit-team{padding:23px 0 35px}
-.credit-team h3{font-size:clamp(27px,2.5vw,34px);margin-bottom:22px}
-.team-roster{margin:0;display:grid;gap:0}
-.team-roster>div{display:grid;grid-template-columns:minmax(150px,.9fr) minmax(0,1.1fr);gap:16px;align-items:baseline;padding:7px 0;border-bottom:1px dotted var(--line)}
-.team-roster>div:last-child{border-bottom:0}
-.team-roster dt{font-family:var(--serif);font-size:22px;line-height:1.1;color:var(--ink)}
-.team-roster dd{font-family:var(--sans);font-size:17px;line-height:1.2;color:var(--body-blue);margin:0}
-@media(max-width:720px){
- .credits-intro{font-size:18px;margin-bottom:36px}
- .credit-team{padding:21px 0 31px}
- .credit-team h3{margin-bottom:15px}
- .team-roster>div{grid-template-columns:minmax(125px,.9fr) minmax(0,1.1fr);gap:10px}
- .team-roster dt{font-size:20px}
- .team-roster dd{font-size:16px}
-}
-
 /* The cover ink continues onto the page; its dotted flight path belongs to the original drawing. */
 .hero{display:block;min-height:0;padding-top:76px;padding-bottom:96px;overflow:hidden}
 .hero>.eyebrow{margin-bottom:18px}
@@ -310,3 +275,178 @@ body{color:var(--body-blue)}
  .hero-art-note{font-size:20px;right:8%;bottom:-17px}
 }
 @media(max-width:390px){.hero>h1{font-size:53px}.hero-scene .hero-art{width:calc(100% + 48px)}}
+
+.final-inner .sleeping-teky{mix-blend-mode:multiply}
+
+/* Portada: o texto vive no ceo da cuberta completa do libro, como no conto */
+.hero{padding-top:64px;padding-bottom:0;overflow:visible;text-align:center;border-bottom:none}
+body{overflow-x:clip}
+.hero>.eyebrow{margin-bottom:14px}
+.hero>h1{max-width:none;margin:0 auto 26px;font-size:clamp(56px,6.4vw,100px)}
+.hero-scene{display:block;position:relative}
+.hero-scene .hero-copy{position:relative;z-index:1;max-width:620px;margin:0 auto;padding-top:0}
+.hero-scene .hero-lead{max-width:none;font-size:clamp(24px,2.3vw,32px);margin-bottom:12px}
+.hero-scene .hero-text{max-width:540px;margin:0 auto}
+.hero-scene .actions{justify-content:center;margin-top:24px}
+.hero-scene .hero-art{width:100vw;max-width:none;margin:-10vw 0 0 calc(50% - 50vw);position:relative;z-index:0}
+.hero-scene .hero-art img{display:block;width:100%;height:auto;max-width:none;mix-blend-mode:multiply}
+@media(max-width:1000px){.hero-scene .hero-art{margin-top:-3vw}}
+@media(max-width:720px){
+  .hero-scene .actions{flex-direction:column;gap:18px}
+  .hero-scene .hero-art{margin-top:18px;height:250px}
+  .hero-scene .hero-art img{width:100%;height:100%;object-fit:cover;object-position:88% 100%}
+}
+
+/* Título como na cuberta do libro */
+.hero>h1.cover-title{color:#B5432E;letter-spacing:-.01em!important;line-height:1;margin:0 auto 30px;font-size:clamp(58px,6.6vw,100px)}
+.cover-title span{display:block}
+.cover-title .ct-1{display:inline-flex;align-items:center;gap:.22em}
+.cover-title .ct-2{font-size:.6em;margin-top:.12em}
+.ct-marks{width:.42em;height:.52em;flex:0 0 auto;overflow:visible}
+.ct-marks g{stroke:currentColor;stroke-width:5;stroke-linecap:round;fill:none}
+.ct-flip{transform:scaleX(-1)}
+@media(max-width:720px){.hero>h1.cover-title{font-size:clamp(40px,11.5vw,60px)}.cover-title .ct-2{font-size:.66em}}
+
+/* Cabeceira: o título pequeno, coas raias da cuberta */
+.site-header{border-bottom:0;position:relative}
+.site-header::after{content:"";position:absolute;left:calc(50% - 50vw);width:100vw;bottom:0;height:1px;background:var(--line)}
+.wordmark{color:#B5432E;max-width:none}
+.wordmark .mark{display:inline-flex;align-items:center;gap:.22em;margin-left:-.64em}
+.wordmark .mark-tail{color:#B5432E}
+.wordmark .ct-marks{width:.42em;height:.52em}
+
+/* Pé: a flor entre dúas raias, de lado a lado, e a pegada como sinatura */
+.site-footer .footer-bottom{border-top:0;margin-top:20px}
+.footer-flor{display:flex;align-items:center;gap:16px;width:100vw;margin:64px 0 0 calc(50% - 50vw)}
+.footer-flor i{flex:1;height:1px;background:var(--line)}
+.footer-flor img{height:30px;width:auto;display:block}
+.firma{height:16px;width:auto;vertical-align:-2px;margin-left:6px}
+.footer-bottom a:hover{text-decoration:none;color:var(--coral);background-image:none}
+
+/* Tui e as instrucións */
+.star-art img.tui-portrait{max-width:300px}
+/* Os planos de Teky ocupan a sección de lado a lado e o texto vive no seu ceo */
+.final-cta{padding-bottom:0;min-height:0}
+.final-cta .final-inner{display:block;position:relative;max-width:none;text-align:left}
+.final-inner .final-art{display:block;width:100vw;max-width:none;height:auto;margin:0 0 0 calc(50% - 50vw);mix-blend-mode:multiply}
+.final-inner>div{position:absolute;top:1vw;right:0;width:min(540px,42%);z-index:1}
+.final-inner>div h2{font-size:clamp(52px,5.4vw,84px)}
+@media(max-width:1000px){
+  .final-cta .final-inner{display:flex;flex-direction:column-reverse;text-align:center}
+  .final-inner>div{position:static;width:auto;padding:0 0 24px}
+  .final-inner .actions{justify-content:center;align-items:center}
+}
+@media(max-width:720px){.star-art img.tui-portrait{max-width:200px}}
+
+/* Créditos: o equipo da caixa, como os créditos ao final do libro.
+   Persoas e animais comparten a mesma ficha: avatar redondo, nome e papel. */
+.site-footer{padding-top:84px}
+.site-footer .footer-heading{width:auto;text-align:center;margin:0 auto 14px;padding:0;background:none;font-size:clamp(40px,4vw,56px);line-height:1.05;color:var(--ink)}
+.site-footer .footer-heading::before,.site-footer .footer-heading::after{content:none}
+.credits-intro{max-width:600px;margin:0 auto 52px;text-align:center;font-size:18px;line-height:1.55;color:var(--body-blue)}
+.credit-people h3,.credit-animals>h3{font-family:var(--serif);font-weight:400;color:var(--coral);font-size:22px;line-height:1.2;text-align:center;margin:0 0 22px}
+.credit-animals{margin-top:56px}
+.cast{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.people{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 44px}
+.chip{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"av name" "av role";column-gap:13px;row-gap:1px;align-items:center;color:var(--ink);text-align:left;min-width:0}
+.chip>:first-child{grid-area:av}
+.chip strong{grid-area:name;align-self:end;font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.1;color:var(--ink)}
+.chip small{grid-area:role;align-self:start;font-family:var(--sans);font-size:15px;line-height:1.25;color:var(--body-blue)}
+.chip a{color:inherit;text-decoration:none;transition:color .15s}
+.chip small a{color:var(--muted);border-bottom:1px solid var(--line)}
+.chip a:hover,.chip small a:hover{color:var(--coral);border-color:currentColor}
+.av-link{display:block;border-radius:50%}
+.chip .av{display:grid;place-items:center;width:50px;height:50px;object-fit:cover;background:#fff;border:1.5px solid var(--line);border-radius:52% 48% 50% 50% / 48% 53% 47% 52%;font-family:var(--serif);font-size:19px;line-height:1;color:var(--muted);transition:border-color .15s}
+.people .chip .av{width:60px;height:60px;font-size:22px}
+.chip:has(a:hover) .av{border-color:var(--coral)}
+.av-pair{display:flex}
+.av-pair .av+.av{margin-left:-14px}
+.credit-teams{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px clamp(24px,3vw,48px);max-width:none}
+.credit-team{border:0;padding:0;min-width:0}
+.credit-team h4{font-family:var(--serif);font-weight:400;font-size:clamp(23px,1.9vw,27px);line-height:1.15;color:var(--ink);margin:0 0 16px;padding-bottom:9px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='7' viewBox='0 0 110 7'%3E%3Cpath d='M1 5 C25 3 37 6 59 4 S91 3 109 4' fill='none' stroke='%23c5dce8' stroke-width='1.45' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x left bottom}
+.credits-art{margin-top:56px}
+.footer-bottom a{white-space:nowrap}
+@media(max-width:1000px){.credit-teams{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){
+  .site-footer{padding-top:64px}
+  .credits-intro{font-size:17px;margin-bottom:40px}
+  .people{flex-direction:column;align-items:flex-start;gap:14px;max-width:320px;margin:0 auto}
+  .credit-animals{margin-top:44px}
+  .credit-teams{grid-template-columns:1fr;gap:30px;max-width:320px;margin:0 auto}
+  .chip .av{width:46px;height:46px}
+  .people .chip .av{width:54px;height:54px}
+  .chip strong{font-size:20px}
+  .credits-art{margin-top:40px}
+}
+
+/* As raias entre seccións van de lado a lado, como a da cabeceira e a do pé. */
+.story-intro,.resources,.star-section,.contribute,.license-section{border-bottom:0;position:relative}
+.story-intro::after,.resources::after,.star-section::after,.contribute::after,.license-section::after{content:"";position:absolute;left:calc(50% - 50vw);width:100vw;bottom:0;height:1px;background:var(--line);pointer-events:none}
+
+/* No móbil, a dobre páxina do libro tamén vai a sangre. */
+@media(max-width:720px){
+  .book-preview{width:100vw;max-width:none;margin-left:calc(50% - 50vw);margin-right:0}
+  .book-hint{right:24px}
+}
+
+/* Créditos: catro equipos en fila só cando hai sitio; as cabeceiras ocupan o mesmo alto para que as fichas comecen á par. */
+@media(min-width:1181px){.credit-team h4{min-height:2.6em;display:flex;align-items:flex-end}}
+@media(min-width:721px) and (max-width:1180px){.credit-teams{grid-template-columns:repeat(2,minmax(0,1fr));max-width:860px;margin:0 auto}}
+
+/* Cando os planos de Teky van baixo o texto, a ilustración vai de bordo a bordo sen desprazarse. */
+@media(max-width:1000px){.final-cta .final-inner .final-art{align-self:flex-start}}
+
+/* Os animais nunha soa lista, sen equipos */
+.cast-all{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px clamp(20px,3vw,40px);max-width:1080px;margin:0 auto}
+@media(max-width:720px){.cast-all{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px;max-width:none}}
+@media(max-width:720px){.cast-all .chip:has(.av-pair){grid-column:span 2}}
+
+/* A nota da caixa: Licencio na biblioteca, grande e con vida */
+.license-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(30px,5vw,80px);align-items:center}
+.license-art{margin:0;text-align:center}
+.license-art img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+.license-art figcaption{margin-top:6px;color:var(--muted);font-size:15px}
+.license-art figcaption span{display:block;font-family:var(--serif);color:var(--ink);font-size:20px}
+.license-main .license-note{font-family:var(--sans);font-size:13px!important;line-height:1.5!important;color:var(--muted);border:0;padding:0;margin-top:34px;max-width:440px;opacity:.85}
+
+@media(max-width:1000px){.license-layout{grid-template-columns:1fr}.license-art{max-width:560px;margin:10px auto 0}}
+
+/* O libro aberto, con tapas, follas e lombo, como na presentación */
+.book-preview{display:block;max-width:1060px;width:auto;margin:70px auto 0;transform:rotate(-.6deg);transition:transform .3s}
+.book-preview:hover{transform:rotate(0) translateY(-3px)}
+.book-board{display:block;position:relative;padding:12px 16px 18px;border-radius:9px;background:#2f6c9a;box-shadow:0 22px 34px -14px #09528e66,0 3px 0 #245a83}
+.book-leaf{display:block;position:relative;background:#fff;box-shadow:0 1px 0 #fff,0 2px 0 #c9d9e5,0 3px 0 #fff,0 4px 0 #c9d9e5,0 5px 0 #fff,0 6px 0 #b9cddc}
+.book-leaf::before,.book-leaf::after{content:"";position:absolute;top:3px;bottom:-6px;width:7px;background:repeating-linear-gradient(90deg,#fff 0 1px,#c9d9e5 1px 2px)}
+.book-leaf::before{left:-7px;border-radius:3px 0 0 3px}
+.book-leaf::after{right:-7px;border-radius:0 3px 3px 0}
+.book-leaf img{display:block;width:100%;height:auto;filter:none}
+.book-gutter{position:absolute;top:0;bottom:0;left:calc(50% - 40px);width:80px;pointer-events:none;mix-blend-mode:multiply;
+  background:linear-gradient(90deg,transparent,#0b3a6114 38%,#0b3a612e 50%,#0b3a6114 62%,transparent)}
+.book-caption{text-align:center;margin-top:30px}
+@media(max-width:720px){
+  .book-preview{width:auto;max-width:none;margin:40px -8px 0;transform:none}
+  .book-board{padding:7px 9px 11px;border-radius:6px}
+  .book-leaf::before,.book-leaf::after{width:4px}.book-leaf::before{left:-4px}.book-leaf::after{right:-4px}
+  .book-gutter{left:calc(50% - 22px);width:44px}
+}
+
+/* O libro pasa follas ao facer scroll (libro.js) */
+.flipbook{display:none}
+.is-flip .flipbook{display:block;position:absolute;inset:0;perspective:2400px}
+.is-flip>img{visibility:hidden}
+.book-leaf .flipbook .fb-base{position:absolute;top:0;width:50%;height:100%;max-width:none}
+.fb-l{left:0}.fb-r{right:0}
+.fb-leaf{position:absolute;top:0;right:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;will-change:transform}
+.book-leaf .fb-leaf img,.fb-shade{position:absolute;inset:0;width:100%;height:100%;max-width:none;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fb-front{background:#fff}
+.fb-back{transform:rotateY(180deg);background:#fff}
+.fb-shade{pointer-events:none;background:linear-gradient(90deg,#0b3a6155,transparent 60%);opacity:0}
+.book-gutter{z-index:60}
+
+/* O libro da portada sen tapas de cor, como no deck */
+.book-board{background:none;box-shadow:none;padding:0 0 8px;border-radius:0}
+.book-leaf{outline:1px solid #d8e1e8;box-shadow:1px 1px 0 #fff,2px 2px 0 #d8e1e8,3px 3px 0 #fff,4px 4px 0 #d8e1e8,5px 5px 0 #fff,6px 6px 0 #cbd6df,0 22px 30px -14px #09528e55}
+.book-leaf::before,.book-leaf::after{background:repeating-linear-gradient(90deg,#fff 0 1px,#d8e1e8 1px 2px)}
+@media(max-width:720px){.book-board{padding:0 0 6px}}
+/* Nas páxinas do libro o pé empeza directamente coa flor */
+.site-footer:has(> .wrap > .footer-flor:first-child){border-top:0;padding-top:10px}

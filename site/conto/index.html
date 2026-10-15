@@ -9,30 +9,36 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/hand.css">
   <link rel="stylesheet" href="/conto/reader.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
   <a class="skip" href="#reader">Ir ao conto</a>
   <header class="site-header wrap">
-    <a class="wordmark" href="/" aria-label="Érase unha vez un proxecto Open Source, inicio"><span class="mark">Érase unha vez</span><span class="mark-tail">un proxecto Open Source</span></a>
-    <nav aria-label="Navegación"><a href="/">Volver á web</a><a class="nav-read" href="/conto/texto.html">Versión só texto</a></nav>
+    <a class="wordmark" href="/" aria-label="Érase unha vez un proxecto Open Source, inicio"><span class="mark"><svg class="ct-marks" viewBox="0 0 40 50" aria-hidden="true" focusable="false"><g><line x1="32" y1="8" x2="14" y2="2"/><line x1="28" y1="25" x2="4" y2="25"/><line x1="32" y1="42" x2="14" y2="48"/></g></svg>Érase unha vez…<svg class="ct-marks ct-flip" viewBox="0 0 40 50" aria-hidden="true" focusable="false"><g><line x1="32" y1="8" x2="14" y2="2"/><line x1="28" y1="25" x2="4" y2="25"/><line x1="32" y1="42" x2="14" y2="48"/></g></svg></span><span class="mark-tail">un proxecto Open Source</span></a>
+    <nav aria-label="Navegación"><a href="/">Volver á web</a><a class="nav-read" href="/conto/texto.html">Versión só texto <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main id="reader" class="reader-shell wrap">
     <div class="reader-heading">
-      <div><p class="eyebrow">O conto · galego</p><h1>Érase unha vez un proxecto <em>Open Source</em></h1></div>
+      <div><p class="eyebrow">O conto · galego</p><h1 class="visually-hidden">Érase unha vez un proxecto Open Source</h1></div>
       <p>Unha caixa de cartón, unha gata chamada Teky e un bosque enteiro. Follea as páxinas tal como aparecen no libro.</p>
     </div>
-    <div class="reader-status"><span>Libro ilustrado · 36 páxinas</span><span>Toca unha páxina para ampliala</span></div>
+    <div class="reader-status"><button class="full-toggle" id="full" type="button" aria-pressed="false">Pantalla completa <span aria-hidden="true">⛶</span></button></div>
+    <div class="reader-stage" id="reader-stage">
     <div class="reader-book" id="reader-book" role="group" aria-label="Páxinas do libro" aria-describedby="reader-access-note">
       <figure class="reader-page is-blank" id="left-page" aria-hidden="true"><button class="page-zoom" type="button" hidden><img width="1276" height="1276" alt=""></button></figure>
-      <figure class="reader-page" id="right-page"><button class="page-zoom" type="button" aria-label="Ampliar a páxina 1" data-page="1"><img src="/conto/pages/page-01.webp" width="1276" height="1276" alt="Páxina 1 do conto" fetchpriority="high"></button></figure>
+      <figure class="reader-page" id="right-page"><button class="page-zoom" type="button" aria-label="Páxina 1" data-page="1"><img src="/conto/pages/page-01.webp" width="1276" height="1276" alt="Páxina 1 do conto" fetchpriority="high"></button></figure>
     </div>
     <div class="reader-controls"><button id="prev" type="button" aria-label="Páxinas anteriores">← <span>Anterior</span></button><span id="position" role="status" aria-live="polite"></span><button id="next" type="button" aria-label="Páxinas seguintes"><span>Seguinte</span> →</button></div>
-    <p class="reader-hint">Usa as frechas ou desliza para follear. Toca unha páxina para vela de preto.</p>
+    <button class="full-close" id="full-close" type="button">Saír <span aria-hidden="true">×</span></button>
+    </div>
+    <p class="reader-hint">Usa as frechas, desliza ou toca unha páxina para pasar folla.</p>
     <p class="reader-access-note" id="reader-access-note">O texto tamén está dispoñible nunha versión só texto baixo o visor.</p>
-    <div class="reader-links"><a href="/conto/texto.html">Versión só texto ↗</a><a href="/">Volver á web ↗</a></div>
   </main>
-  <dialog class="page-dialog" id="page-dialog" aria-label="Páxina ampliada"><button class="close-dialog" type="button" aria-label="Pechar a páxina ampliada">Pechar ×</button><div class="zoom-scroll"><img src="/conto/pages/page-01.webp" width="1276" height="1276" alt=""></div></dialog>
-  <footer class="site-footer"><div class="wrap footer-bottom"><span>Texto e ilustracións: Andrea Magán Rey · 2026</span><span>Contido <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.gl">CC BY-NC 4.0</a></span></div></footer>
+  <footer class="site-footer"><div class="wrap">
+    <div class="footer-flor" aria-hidden="true"><i></i><img src="/assets/decor/cenefa.png" alt=""><i></i></div>
+    <div class="footer-bottom"><span>© 2026 Andrea Magán Rey <img class="firma" src="/assets/decor/pegada.png" alt=""></span><span><a href="https://creativecommons.org/licenses/by-nc/4.0/deed.gl">Contido CC BY-NC 4.0</a> · <a href="https://github.com/andreamagan/erase-una-vez-open-source/blob/main/LICENSE-CODE">Código MIT</a> · <a href="https://github.com/andreamagan/erase-una-vez-open-source">Repositorio en GitHub</a></span></div>
+  </div></footer>
   <script src="/conto/reader.js"></script>
 </body>
 </html>

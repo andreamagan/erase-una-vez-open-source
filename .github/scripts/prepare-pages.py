@@ -65,7 +65,7 @@ template = (destination / "conto" / "texto.template.html").read_text(encoding="u
     template.replace("<!-- BOOK_TEXT -->", parts), encoding="utf-8")
 (destination / "conto" / "texto.template.html").unlink()
 
-root_path = re.compile(r"(?<![A-Za-z0-9:])/(?:assets|conto|charla|style[.]css|hand[.]css|favicon[.]svg)(?=/|[^A-Za-z0-9_-]|$)")
+root_path = re.compile(r"(?<![A-Za-z0-9:])/(?:assets|conto|charla|style[.]css|hand[.]css|favicon[.]png|apple-touch-icon[.]png)(?=/|[^A-Za-z0-9_-]|$)")
 for path in destination.rglob("*"):
     if path.is_file() and path.suffix.lower() in {".html", ".css", ".js"}:
         text = path.read_text(encoding="utf-8")

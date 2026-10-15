@@ -1,0 +1,22 @@
+{
+  "persoas": [
+    {
+      "nome": "Andrea Magán Rey",
+      "papel": "texto, ilustracións e mantemento",
+      "github": "andreamagan",
+      "foto": "assets/avatars/andrea.svg"
+    },
+    {
+      "nome": "Mónica Pérez Sueiro",
+      "papel": "revisión do galego",
+      "linkedin": "https://www.linkedin.com/in/m%C3%B3nica-p%C3%A9rez-sueiro-a6b04b280/",
+      "foto": "assets/avatars/monica.svg"
+    },
+    {
+      "nome": "Marelisa Blanco Pérez",
+      "papel": "asesoría legal e licenzas",
+      "linkedin": "https://www.linkedin.com/in/marelisablanco/",
+      "foto": "assets/avatars/marelisa.svg"
+    }
+  ]
+}
