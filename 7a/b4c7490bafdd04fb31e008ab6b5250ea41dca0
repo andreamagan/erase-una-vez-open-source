@@ -1,0 +1,25 @@
+site/axustes.css
+  s_cb98a6b9e3372b::t_5187ac3457b8e6 291-300
+site/conto/index.html
+  s_cb98a6b9e3372b::t_4b55bd95380c83 11,13,21,25-28,43
+site/conto/reader.css
+  s_cb98a6b9e3372b::t_a9fd85f94f5337 31-33,37-39,84-85,125-126,131-134
+site/index.html
+  s_cb98a6b9e3372b::t_2c7398e8b45143 25,35,58,66-67,102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7ab4c7490bafdd04fb31e008ab6b5250ea41dca0",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
