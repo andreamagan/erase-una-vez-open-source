@@ -1,0 +1,25 @@
+LICENSE
+  s_cb98a6b9e3372b::t_e90e9003d92c51 19
+README.md
+  s_cb98a6b9e3372b::t_156ffe05e3d399 60,66-67,78
+site/index.html
+  s_cb98a6b9e3372b::t_344f756f27e2a6 80
+talk/README.md
+  s_cb98a6b9e3372b::t_8798b2570e9d4c 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2b2201372be711aa7d0d525ac49549ba1c3ef00f",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
