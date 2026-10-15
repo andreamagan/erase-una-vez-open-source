@@ -68,8 +68,9 @@ same columns: *Ready to start → Needs more hands → In progress → Done*
 Galician story). Start with *Ready to start* if it's your first
 contribution.
 
-To take an issue, comment on it and it gets assigned to you; if it
-already has someone assigned, talk to them before starting in parallel.
+To take an issue, leave a comment saying you'd like to work on it and
+the maintainer will assign it to you. If it already has someone
+assigned, talk to them before starting in parallel.
 
 ## Before opening a PR
 
@@ -79,6 +80,11 @@ already has someone assigned, talk to them before starting in parallel.
 2. One PR, one topic. Easier to review, easier to merge.
 3. If you're translating, keep the original's paragraph structure — it
    makes it much easier to compare both versions line by line.
+4. Write commit messages as [Conventional Commits](https://www.conventionalcommits.org/):
+   `type(scope): what changes`, for example
+   `fix(book): correct a typo on page 12`. Types: `feat`, `fix`,
+   `docs`, `style`, `ci`, `chore`. Scopes: `book`, `illustrations`,
+   `talk`, `site`, `conto`, `license`.
 
 ## Questions
 
