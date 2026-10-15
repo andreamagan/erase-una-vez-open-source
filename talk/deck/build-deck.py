@@ -51,9 +51,15 @@ def fill(text, values):
     return re.sub(r"\{\{([a-z_0-9]+(?:\|br)?)\}\}", rep, text)
 
 
+# Event branding is optional: a talk without [event] logo, skyline, pattern or
+# qr just leaves those spots empty (a transparent pixel).
+EMPTY = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+
+
 def inline_assets(text, event):
     text = re.sub(r"\{\{asset:([^}]+)\}\}", lambda m: data_uri(m.group(1)), text)
-    return re.sub(r"\{\{event:([a-z]+)\}\}", lambda m: data_uri(event[m.group(1)]), text)
+    return re.sub(r"\{\{event:([a-z]+)\}\}",
+                  lambda m: data_uri(event[m.group(1)]) if event.get(m.group(1)) else EMPTY, text)
 
 
 def read_script(path):
@@ -76,7 +82,8 @@ def build(edition, out=None):
     ini = configparser.ConfigParser(interpolation=None)
     ini.optionxform = str
     ini.read(edition / "slides.ini", encoding="utf-8")
-    deck, event = dict(ini["deck"]), dict(ini["event"])
+    deck = dict(ini["deck"])
+    event = dict(ini["event"]) if ini.has_section("event") else {}
     script = read_script(edition / "guion.md")
     layouts = {p.stem: p.read_text(encoding="utf-8") for p in (DECK / "layouts").glob("*.html")}
     fondo = (DECK / "fondo.html").read_text(encoding="utf-8").strip()
@@ -87,7 +94,7 @@ def build(edition, out=None):
     for i, name in enumerate(sections):
         s = dict(ini[name])
         n = int(name.split()[1])
-        values = {**s, "author": deck["author"], "hashtag": event["hashtag"],
+        values = {**s, "author": deck["author"], "hashtag": event.get("hashtag", ""),
                   "title_flat": deck["title"]}
         if "image" in s:
             values["image"] = data_uri(s["image"])
@@ -108,7 +115,7 @@ def build(edition, out=None):
         slides.append(
             f'<div class="marco" data-i="{i}"><div class="celda"><div class="vuelta">'
             f'<div class="cara frente"><div class="tablero{table}">{fondo}{sky}'
-            f'<i class="wc-logo"></i><span class="wc-tag">{html.escape(event["hashtag"])}</span>'
+            f'<i class="wc-logo"></i><span class="wc-tag">{html.escape(event.get("hashtag", ""))}</span>'
             f'{body}</div></div><div class="cara dorso"></div><i class="sombra"></i></div></div></div>')
         minis.append(f'<button class="mini" data-i="{i}"><i class="lienzo"></i><span>{i + 1}</span></button>')
         seconds = int(s.get("seconds", 0))
@@ -123,8 +130,8 @@ def build(edition, out=None):
     page = page.replace("{{slides}}", "\n".join(slides))
     page = page.replace("{{minis}}", "\n".join(minis))
     page = page.replace("{{notes}}", json.dumps(notes, ensure_ascii=False, indent=1))
-    page = page.replace("{{event.name|js}}", json.dumps(event["name"], ensure_ascii=False))
-    page = page.replace("{{event.place|js}}", json.dumps(event["place"], ensure_ascii=False))
+    page = page.replace("{{event.name|js}}", json.dumps(event.get("name", ""), ensure_ascii=False))
+    page = page.replace("{{event.place|js}}", json.dumps(event.get("place", ""), ensure_ascii=False))
     page = page.replace("{{deck.title}}", html.escape(deck["title"]))
     page = page.replace("{{deck.lang}}", deck.get("lang", "gl"))
     page = inline_assets(page, event)
@@ -132,6 +139,7 @@ def build(edition, out=None):
     if leftover:
         raise SystemExit(f"Unfilled placeholders: {sorted(set(leftover))}")
     out = Path(out) if out else edition / deck.get("output", "deck.html")
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(page, encoding="utf-8")
     print(f"{out} · {len(slides)} slides · {elapsed // 60}:{elapsed % 60:02d}")
 

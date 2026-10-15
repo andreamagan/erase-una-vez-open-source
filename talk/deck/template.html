@@ -102,9 +102,9 @@ html,body{height:100%;overflow:hidden;background:#20201e;
    transform:translate(-50%,-50%);border-radius:50%;
    background:radial-gradient(closest-side,rgba(255,228,176,.115),transparent 70%)}
 .fondo .pa,.fondo .es{position:absolute;background:center/contain no-repeat}
-.fondo .pa{aspect-ratio:1.0448;background-image:url({{event:pattern}})}
-.fondo .es{aspect-ratio:.9913;background-image:url({{asset:illustrations/decor/estrela.png}});
-   filter:saturate(.35) brightness(1.9)}
+.fondo .pa{aspect-ratio:1.109;background-image:url({{asset:illustrations/decor/pegada.png}});filter:brightness(0) invert(1)}
+.fondo .es{aspect-ratio:1.109;background-image:url({{asset:illustrations/decor/pegada.png}});
+   filter:brightness(0) invert(1)}
 .fondo::after{content:'';position:absolute;inset:0;background:
    radial-gradient(128% 104% at 50% 44%,transparent 48%,rgba(5,16,25,.5) 100%)}
 .hoja img{display:block;position:absolute}
@@ -146,7 +146,7 @@ html,body{height:100%;overflow:hidden;background:#20201e;
 .pie .pn{right:40px}
 .pie .patita{position:absolute;right:0;top:6px;height:22px;width:auto;opacity:.8}
 /* la flor, clavada sobre el lomo */
-.pie .flor{position:absolute;top:50%;left:728.4px;height:26px;width:auto;
+.pie .flor{position:absolute;top:50%;left:744.2px;height:30px;width:auto;
      transform:translateY(-50%);opacity:.9}
 .pie .d{position:absolute;top:50%;height:2px;opacity:.62;border-radius:2px;
      transform:translateY(-50%);
@@ -245,7 +245,7 @@ html,body{height:100%;overflow:hidden;background:#20201e;
      font-family:"Patrick Hand",ui-rounded,"Segoe UI",system-ui,sans-serif;font-weight:400;
      font-size:50px;line-height:1.22;color:var(--teja);text-shadow:0 2px 12px rgba(255,255,255,.9),0 0 26px rgba(255,255,255,.7)}
 .cub-regla{display:none;position:absolute;top:342px;left:50%;transform:translateX(-50%)}
-.cub-regla img{position:static;display:block;height:24px;opacity:.9}
+.cub-regla img{position:static;display:block;height:28px;opacity:.9}
 .cub-sub{display:none;position:absolute;top:390px;left:100px;right:100px;text-align:center;
      font-size:22px;line-height:1.45;color:var(--azul);opacity:.78}
 /* un plato de luz detrás del dibujo, para que no flote sobre el vacío */
@@ -306,7 +306,7 @@ html,body{height:100%;overflow:hidden;background:#20201e;
 .ded-txt{position:absolute;top:288px;left:1046px;right:130px;text-align:center;
      font-size:50px;line-height:1.44;color:var(--teja)}
 .ded-cen{position:absolute;top:566px;left:1418px;transform:translateX(-50%)}
-.ded-cen img{position:static;height:28px;opacity:.8}
+.ded-cen img{position:static;height:32px;opacity:.85}
 .ded-nombre{position:absolute;top:646px;left:1046px;right:130px;text-align:center;
      font-size:42px;color:var(--azul)}
 .ded-rol{position:absolute;top:710px;left:1046px;right:130px;text-align:center;
@@ -616,7 +616,7 @@ addEventListener('resize', ajusta);
 
 /* las dos rayitas van del texto a la cenefa; el ancho del texto depende de la
    tipografía, así que se mide una vez y se reparte a todas las diapositivas */
-const ORN_L=728.4, ORN_W=198.9, PIE_W=1660, HUECO=16;
+const ORN_L=744.2, ORN_W=167.3, PIE_W=1660, HUECO=16;
 function colocaPie(){
   /* 2026-09-22: cada pagina mide e coloca as suas propias rayitas, porque o
      texto de .pn xa non e sempre igual (agora leva o concepto de cada paxina) */

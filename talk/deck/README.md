@@ -16,8 +16,9 @@ git, since it's rebuilt from the sources.
 From the edition folder:
 
 - `slides.ini` — one `[slide N]` per slide: its layout, illustration,
-  the short texts on the page and its timing. Event name, logo and QR code
-  go in `[event]`.
+  the short texts on the page and its timing. Event name, logo, skyline,
+  QR code and hashtag go in `[event]`, which is optional: leave it out
+  for a talk that isn't tied to an event.
 - `guion.md` — what's read aloud, one `## N. …` section per slide. It shows
   up in the rehearsal view.
 

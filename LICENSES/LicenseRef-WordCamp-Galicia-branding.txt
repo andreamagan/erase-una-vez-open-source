@@ -1,7 +1,7 @@
 WordCamp Galicia 2026 branding
 
 The files in talk/wordcamp-galicia-2026/event/ (the WordCamp Galicia 2026
-logo, its crab pattern and the A Coruña skyline) belong to the WordCamp
+logo and the A Coruña skyline) belong to the WordCamp
 Galicia 2026 organisers and the WordPress Foundation. WordCamp and WordPress
 are trademarks of the WordPress Foundation.
 

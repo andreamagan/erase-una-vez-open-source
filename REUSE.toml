@@ -2,31 +2,32 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-# Licencias de cada fichero del repositorio (https://reuse.software/).
-# Así no hace falta un fichero .license al lado de cada imagen.
+# License of every file in the repository (https://reuse.software/),
+# so no .license file is needed next to each image.
 version = 1
 
-# Contenido creativo: historia, guion, personajes, ilustraciones y textos
+# Creative content: story, talk script, characters, illustrations
 [[annotations]]
 path = [
   "book/**",
   "illustrations/**",
   "talk/**",
   "site/assets/**",
+  "site/favicon.png",
+  "site/apple-touch-icon.png",
   "site/conto/pages/**",
-  "README.md",
-  "CONTRIBUTING.md",
 ]
 SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
 SPDX-License-Identifier = "CC-BY-NC-4.0"
 
-# Código: web, configuración de Pages y scripts
+# Code: website, Pages setup and scripts
 [[annotations]]
 path = [
   "site/**/*.html",
   "site/**/*.css",
   "site/**/*.js",
   ".github/**",
+  "talk/*.py",
   "talk/deck/*.py",
   "talk/deck/*.html",
   "talk/deck/layouts/**",
@@ -35,7 +36,7 @@ path = [
 SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
 SPDX-License-Identifier = "MIT"
 
-# Textos de licencia, configuración del repo y este fichero
+# License texts, repo docs and configuration, and this file
 [[annotations]]
 path = [
   "LICENSE",
@@ -44,25 +45,27 @@ path = [
   ".gitignore",
   "REUSE.toml",
   "site/.nojekyll",
+  "site/equipo.json",
   "CODE_OF_CONDUCT.md",
+  "README.md",
+  "CONTRIBUTING.md",
   "SECURITY.md",
 ]
 SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
 SPDX-License-Identifier = "CC0-1.0"
 
-# Revisión lingüística del texto master en gallego
+# Language review of the Galician master text
 [[annotations]]
 path = [
   "book/gl/texto.md",
-  "site/conto/texto.md",
 ]
 SPDX-FileCopyrightText = "2026 Andrea Magán Rey"
 SPDX-FileContributor = ["2026 Mónica Pérez Sueiro (proofreader)"]
 SPDX-License-Identifier = "CC-BY-NC-4.0"
 
-# Tipografías incrustadas en la presentación
+# Fonts embedded in the slides and the website
 [[annotations]]
-path = "talk/deck/fonts/**"
+path = ["talk/deck/fonts/**", "site/assets/fonts/**"]
 SPDX-FileCopyrightText = [
   "2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)",
   "2012 Patrick Wagesreiter",
@@ -71,17 +74,16 @@ SPDX-FileCopyrightText = [
 ]
 SPDX-License-Identifier = "OFL-1.1"
 
-# Marca de WordCamp Galicia 2026 (no es de este proyecto)
+# WordCamp Galicia 2026 branding (not part of this project)
 [[annotations]]
 path = [
   "talk/wordcamp-galicia-2026/event/wordcamp-galicia-2026-logo.png",
-  "talk/wordcamp-galicia-2026/event/wordcamp-galicia-crab.png",
   "talk/wordcamp-galicia-2026/event/a-coruna-skyline.png",
 ]
 SPDX-FileCopyrightText = "2026 WordCamp Galicia organisers / WordPress Foundation"
 SPDX-License-Identifier = "LicenseRef-WordCamp-Galicia-branding"
 
-# El QR solo contiene un enlace
+# The QR code only contains a link
 [[annotations]]
 path = "talk/wordcamp-galicia-2026/event/qr-repo.png"
 SPDX-FileCopyrightText = "2026 Andrea Magán Rey"

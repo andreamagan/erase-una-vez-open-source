@@ -1,45 +1,17 @@
+# Generated or system files
 .DS_Store
 *.tmp
 .~lock.*
-slide-*.jpg
-crop_check.png
-charla/plantilla-charla.pdf
-
-# Ficheros de trabajo de Affinity (bloqueos y temporales)
-*.af~lock~
-*.af~tmp~
-
-# Histórico de estilos descartados: 222 MB que no aportan nada a quien
-# quiera contribuir. Se conservan en local, fuera del repo.
-assets/historico/
-
-# Carpeta puente: aquí van ficheros a borrar a mano
-_to_delete/
-
-# Notas de trabajo internas: no se publican
-notas/
-
-# Historial de git anterior (42 commits), guardado por si acaso
-.git-anterior/
-
-# Ficheros generados por Python (scripts de build)
 __pycache__/
 *.pyc
 
-# Carpeta de trabajo de Claude (no se publica)
-Claude\ outputs/
+# Affinity lock and temp files
+*.af~lock~
+*.af~tmp~
 
-# Binarios pesados: se comparten como assets de una GitHub Release, no en git
+# Large binaries are shared as GitHub Release assets, not in git
 book/**/*.pdf
 talk/**/*.pdf
+
+# Built by talk/deck/build-deck.py (and by GitHub Pages at /charla/)
 talk/**/erase-unha-vez.html
-
-# Copias de prueba y respaldos
-*PRUEBA*
-*_backup*
-
-# Trabajo local: borradores, ficheros de Affinity, zips de referencia (no se publica)
-_local/
-
-# Decoraciones de la presentación pendientes de sustituir por dibujos propios
-illustrations/decor/
