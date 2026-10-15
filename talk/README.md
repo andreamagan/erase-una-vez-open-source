@@ -11,7 +11,7 @@ given in one language, stated at the top of its script.
 
 You're welcome to. The script and illustrations are under [CC BY-NC
 4.0](../LICENSE): reuse, adapt and translate them freely, crediting the
-author. For a paid event or a commercial context, write first.
+author.
 
 - **The script** — `guion.md` is exactly what's read aloud, slide by
   slide. The headings only match each part with its slide; the story is

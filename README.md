@@ -57,14 +57,14 @@ Two licenses for two different things — see
 
 - **Content** (story, script, characters, illustrations): [CC BY-NC
   4.0](LICENSE). Free to share, translate and adapt for non-commercial
-  use, with attribution; commercial use needs permission.
+  use, with attribution.
 - **Code** (website and scripts): [MIT](LICENSE-CODE).
 
 **Open in spirit, not "open source" by the book.** Strictly speaking,
 the Open Source Definition doesn't allow restricting commercial use, so
 a CC BY-NC work isn't open source. That's deliberate: anyone can read,
-tell, translate and adapt this story for free, but commercial print
-runs go through the author. The preview print calls the book "open
+tell, translate and adapt this story for free, but nobody can sell it.
+The preview print calls the book "open
 source": that's on the
 [errata list](https://github.com/andreamagan/erase-una-vez-open-source/issues?q=is%3Aissue+errata)
 for the next version.
@@ -75,5 +75,4 @@ of the narrative, not the license of this work.
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). In short: translations,
-corrections and adaptations are very welcome; the story's voice and
-central metaphor stay closed.
+corrections, drawings and adaptations are very welcome.
