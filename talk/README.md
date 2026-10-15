@@ -22,6 +22,12 @@ author. For a paid event or a commercial context, write first.
   Translate those two files and you get a translated deck.
 - **The pace** — the Galician script is timed at 10 minutes, pauses
   included. Time yourself before trusting that.
+- **The raffle** — to thank whoever joins in during the talk,
+  `python3 talk/sorteo.py --since "2026-10-17 10:00"` draws among
+  everyone who starred the repo or opened an issue or pull request
+  after that time (one ticket each). Needs the GitHub CLI, logged in.
+  `--list` shows who's in without drawing; `--winners 3` draws three.
+  All options: `python3 talk/sorteo.py --help`.
 
 ## Adapting it
 
