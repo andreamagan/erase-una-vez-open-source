@@ -1,0 +1,21 @@
+.github/workflows/reuse.yml
+  s_cb98a6b9e3372b::t_2ceb97eb9c8368 1-18
+README.md
+  s_cb98a6b9e3372b::t_cc903c1a1d6945 68-70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d8d29fa2a6569394de4d7ed326d4048b4f76ae64",
+  "prompts": {},
+  "sessions": {
+    "s_cb98a6b9e3372b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b11b08df-d18e-42fc-8252-df130e6a8f8b",
+        "model": "unknown"
+      },
+      "human_author": "Andrea Magán Rey <andrea.magan@outlook.com>"
+    }
+  }
+}
