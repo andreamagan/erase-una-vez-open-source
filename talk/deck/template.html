@@ -1168,7 +1168,7 @@ document.getElementById('ayuda').onclick=e=>e.currentTarget.classList.remove('on
 /* ---- el nombre del evento, en todas las copias de la portada ---- */
 function guarda(){ try{ localStorage.setItem('evento', JSON.stringify(EVENTO)); }catch(e){} }
 try{ const g=JSON.parse(localStorage.getItem('evento')||'null');
-     if(g && typeof g==='object') Object.assign(EVENTO,g); }catch(e){}
+     if(g && typeof g==='object'){ delete g.activo; Object.assign(EVENTO,g); }  /* V só vale para esta sesión: ao recargar, o evento volve aparecer */ }catch(e){}
 function pintaEvento(){
   document.querySelectorAll('.ev-nombre,.fr-nombre').forEach(e=>e.textContent=EVENTO.nombre);
   document.querySelectorAll('.ev-lugar,.fr-lugar').forEach(e=>e.textContent=EVENTO.lugar);
