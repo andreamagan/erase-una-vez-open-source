@@ -52,23 +52,23 @@ problema: para iso a compartira.
 
 O problema era que só lle recoñecían a idea cando algo ía mal.
 
-Se todo funcionaba, a idea era deles.Teky entendeu que dicir «si, claro,
+Se todo funcionaba, a idea era deles. Teky entendeu que dicir «si, claro,
 cóllea» non chegaba. Facía falta algo máis se de verdade quería axudar a
-outros gatiños
+outros gatiños.
 
 <!-- p. 12 -->
 
 Así que Teky foi ver a un moucho que vivía na árbore máis alta do pobo.
 Chamábase **Licencio**.
 
-Tiña un ollos grandes e atentos detrás dun anteollos redondos. Cando
+Tiña uns ollos grandes e atentos detrás duns anteollos redondos. Cando
 falaba, facíao amodo, coa solemnidade de quen leu máis normas das que
 ninguén querería ler nunha vida enteira.
 
 —Necesito algo que diga como se poden usar os meus planos —díxolle
-Teky— para non ter líos.
+Teky —para non ter líos.
 
-—Se non hai nota, ninguén ten permiso —respondeulle Licencio. Iso é o
+—Se non hai nota, ninguén ten permiso —respondeulle Licencio—. Iso é o
 que case todo o mundo entende ao revés: pensan que sen nota vale todo.
 E non. Sen nota non vale nada.
 
@@ -83,7 +83,7 @@ ensinoulle só tres, as que case todo o mundo usaba para empezar.
 
 A primeira dicía: «Fai o que queiras cos planos: cópiaos, cámbiaos, fai
 caixas e vendeas. Só tes que deixar esta nota pegada neles, para que se
-saiba de quen saíron.» Esa era, a MIT.
+saiba de quen saíron.» Esa era a MIT.
 
 A segunda dicía: «Fai o que queiras cos planos, incluída vender as
 caixas que fagas con eles. Pero se lle pasas a alguén unha caixa feita
@@ -117,7 +117,7 @@ outros animais do bosque o quentiña que era a caixa de Teky, e pouco a
 pouco todo o pobo comezou a querer unha.
 
 Teky levou os seus planos, coa nota de licenza ben pegada enriba, ata o
-taboleiro de anuncios da praza do pobo
+taboleiro de anuncios da praza do pobo.
 
 Era o sitio ao que todo o mundo ía mirar e, de paso, copiar ideas.
 Cravounos con coidado, quedou mirándoos un intre satisfeita, e pensou
@@ -159,7 +159,7 @@ falaba tanto aquel paxariño.
 Moitos, ao chegar, quedaban mirando para os planos sen saber moi ben por
 onde comezar. Como se montaba exactamente? Para que servía cada peza? A
 quen lle preguntaban se algo non encaixaba? Aí, Teky aprendeu outra
-cousa: colgar os planos e facer que alguén se enter non chegaba.
+cousa: colgar os planos e facer que alguén se enterase non chegaba.
 
 Se quería que calquera puidese construír a súa propia caixa sen axuda,
 necesitaba engadir unhas instrucións claras.
@@ -187,13 +187,13 @@ reforzou unha esquina que se dobraba co vento sen pedir permiso nin dar
 explicacións: simplemente viu o problema e arranxouno.
 
 **Ocre**, un esquío de rabo grande e esponxoso con bo ollo para o bonito,
-pintou unhas sinais de cores para que se vise mellor por onde se entraba
+pintou uns sinais de cores para que se vise mellor por onde se entraba
 na caixa.
 
 **Dique**, un castor precavido que levaba sempre unha libretiña enriba
-para apuntar que , avisou de que a caixa non aguantaba ben a auga cando
-chovía forte, mellor sabelo antes de que fose un problema serio que
-despois—.
+para apuntar, avisou de que a caixa non aguantaba ben a auga cando
+chovía forte. Mellor sabelo antes de que fose un problema serio que
+despois.
 
 <!-- p. 21 -->
 
@@ -204,13 +204,13 @@ primeiro puidese entendelas igual.
 **Gardián**, un porco espiño coas púas sempre alerta e un sombreiriño
 branco calado ata as cellas, repasou cada recuncho da caixa buscando
 furados e fendas por onde se puidese colar alguén non convidado, e
-rematou con un pecho para evitar maleantes.
+rematou cun pecho para evitar maleantes.
 
 Cada un achegou unha cousa pequena do que sabía facer, sen que ninguén
-llelo pedise. Teky decatouse de que non tiña que saber de todo, ni que
-todos soubesen facer o mesmo ca ela:
+llelo pedise. Teky decatouse de que non tiña que saber de todo, nin que
+todos soubesen facer o mesmo ca ela.
 
-cada axuda, por pequena ou invisible que fose, facía a caixa un pouco
+Cada axuda, por pequena ou invisible que fose, facía a caixa un pouco
 mellor.
 
 <!-- p. 23 -->
@@ -219,12 +219,12 @@ mellor.
 parecer trastes sen selo de todo, achegouse a mirar a caixa de Teky con
 moito interese.
 
-—Gústanos moito—dixo Bandido suxeitando algo brillante entre as patas—
+—Gústanos moito—dixo Bandido suxeitando algo brillante entre as patas—,
 pero nós entramos sempre pola parte de atrás.
 
 Así que, sen pedirlle permiso a ninguén nin facer ningún dano, fixeron
 unha copia dos planos e foron experimentar pola súa conta, á súa
-maneira, co que a eles necesitaban. Pintaron a súa caixa de azul noite
+maneira, co que eles necesitaban. Pintaron a súa caixa de azul noite
 con estrelas, puxéronlle luces, cavaron un par de túneles secretos,
 engadiron unha trampela traseira e, por suposto, un caixón enteiro só
 para gardar cousas brillantes.
@@ -262,7 +262,7 @@ desde onde Tui anunciara a caixa tempo atrás. O taboleiro, desbordado,
 empezaba a parecer máis un lío que unha axuda.
 
 Foi entón cando apareceu Norma, a formiga, sempre cun portapapeis baixo
-o brazo e unha gorra de capataz un pouco grande para o seu tamaño.Norma
+o brazo e unha gorra de capataz un pouco grande para o seu tamaño. Norma
 mirou para o taboleiro, mirou para as notiñas amoreadas, e decidiu que
 aquilo necesitaba orde. Colleu as peticións soltas e organizounas en
 columnas claras: «listas para empezar», «necesitan máis mans», «xa en
