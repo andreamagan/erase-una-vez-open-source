@@ -8,7 +8,7 @@ Texto e ilustracións: Andrea Magán Rey
 
 © 2026 Andrea Magán Rey
 
-Este libro é aberto, baixo licenza CC BY NC 4.0.
+Este libro é aberto, baixo licenza CC BY-NC 4.0.
 
 Texto e ilustracións dispoñibles en:
 github.com/andreamagan/erase-una-vez-open-source
