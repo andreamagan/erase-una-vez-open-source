@@ -219,7 +219,7 @@ mellor.
 parecer trastes sen selo de todo, achegouse a mirar a caixa de Teky con
 moito interese.
 
-—Gústanos moito—dixo Bandido suxeitando algo brillante entre as patas—,
+—Gústanos moito —dixo Bandido suxeitando algo brillante entre as patas—,
 pero nós entramos sempre pola parte de atrás.
 
 Así que, sen pedirlle permiso a ninguén nin facer ningún dano, fixeron
