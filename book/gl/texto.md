@@ -66,7 +66,7 @@ falaba, facíao amodo, coa solemnidade de quen leu máis normas das que
 ninguén querería ler nunha vida enteira.
 
 —Necesito algo que diga como se poden usar os meus planos —díxolle
-Teky —para non ter líos.
+Teky— para non ter líos.
 
 —Se non hai nota, ninguén ten permiso —respondeulle Licencio-. Iso é o
 que case todo o mundo entende ao revés: pensan que sen nota vale todo.
