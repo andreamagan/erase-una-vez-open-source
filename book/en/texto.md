@@ -68,9 +68,9 @@ anyone would ever want to read in an entire lifetime.
 “I need something that states how my plans can be used,” Teky
 said, “so I don’t run into any trouble.”
 
-"If there is no note, no one has permission," Licensius replied. That's it
-which almost everyone understands the other way around: they think that without a note everything is valid.
-And no. No note means nothing is valid.
+"If there is no note, no one has permission," Licensius replied. "That's what
+almost everyone gets backwards: they think that without a note anything is allowed.
+But no. Without a note nothing is allowed.
 
 Licensius listened to her calmly, and led her to a shelf that occupied an
 entire wall of his tree, brimming with various notes, rolled up,
