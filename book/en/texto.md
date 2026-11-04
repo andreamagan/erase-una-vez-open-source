@@ -187,8 +187,8 @@ reinforced a corner that was buckling in the wind without asking permission or o
 explanations: he simply saw the problem and fixed it.
 
 **Ochre**, a big, fluffy-tailed squirrel with a keen eye for the cute,
-painted some colored signs so that it was better to see where you entered
-in the box.
+painted some colored signs to make it easier to see where to enter
+the box.
 
 **Dam**, a cautious beaver who always carried a small notebook with him
 to jot things down, pointed out that the box didn't hold up well against water when
