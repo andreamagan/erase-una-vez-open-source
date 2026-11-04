@@ -148,8 +148,8 @@ square. From there, with his beak wide open and his wings spread, he began to ch
 incessantly, so loudly and so rapidly that the news spread from beak to beak
 throughout the entire forest in a matter of hours.
 
-“New blueprints, fresh out of the box! Warm, comfortable box
-luxury! And today, today only... for free!”
+“New blueprints, fresh out of the box! A warm, comfortable,
+luxurious box! And today, today only... for free!”
 
 <!-- p. 18 -->
 
