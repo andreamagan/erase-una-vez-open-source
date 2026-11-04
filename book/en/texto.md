@@ -1,4 +1,4 @@
-# Once upon a time an Open Source
+# Once upon a time an Open Source project
 
 Text of the story as it was in the first edition in galician (2026).
 The comments `<!-- p. N -->` mark the page of the book were every
