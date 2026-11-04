@@ -134,7 +134,7 @@ waiting.
 
 <!-- p. 16 -->
 
-Feeling sad, Teky sat on the edge of the fountain, where she met his friend Tui,
+Feeling sad, Teky sat on the edge of the fountain, where she met her friend Tui,
 a bright blue little bird who could never stay still for even a
 second. Tui would fly from branch to branch, land, take flight again, always with
 something to tell someone.
