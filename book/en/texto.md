@@ -271,8 +271,8 @@ underway.”
 And she wrote them down on colored notes so that anyone could know at a
 glance what was needed, without having to ask anyone.
 
-Babel, Dam, Beak... and other animals that had been for some time
-lending a hand they could take a marker and mark the notes that were coming,
+Babel, Dam, Beak... and other animals that had been lending a hand
+for some time could take a marker and mark the notes as they arrived,
 so that others would know where to start without disturbing Teky in the
 middle of her nap.
 
